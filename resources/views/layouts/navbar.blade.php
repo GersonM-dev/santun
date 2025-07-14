@@ -1,0 +1,44 @@
+<header
+    class="mb-8 mt-2 flex items-center justify-between py-2 md:mb-12 md:py-4 xl:mb-16 shadow-xl/30 p-6 rounded-xl bg-white">
+    <!-- logo - start -->
+    <a href="/" class="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl" aria-label="logo">
+        <svg width="95" height="94" viewBox="0 0 95 94" class="h-auto w-6 text-sky-500" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M96 0V47L48 94H0V47L48 0H96Z" />
+        </svg>
+        Santun
+    </a>
+    <!-- logo - end -->
+
+    <!-- nav - start -->
+    <nav class="hidden gap-12 lg:flex">
+        <a href="{{ route('home') }}" class="text-lg font-semibold {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
+        <a href="{{ route('kegiatan') }}" class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan</a>
+        <a href="{{ route('layanan') }}" class="text-lg font-semibold {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Layanan</a>
+        <a href="{{ route('donasi') }}" class="text-lg font-semibold {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Donasi</a>
+        <a href="{{ route('about') }}" class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">About us</a>
+    </nav>
+    <!-- nav - end -->
+
+    <!-- mobile menu button - start -->
+    <button id="open-menu" type="button"
+        class="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd" />
+        </svg>
+        Menu
+    </button>
+    <!-- mobile menu button - end -->
+</header>
+
+<!-- mobile menu - start -->
+<nav id="mobile-nav" data-aos="fade-left" data-aos-duration="800"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white p-8 text-center text-xl font-semibold text-gray-700 transition-all duration-300 lg:hidden hidden">
+    <a href="#" class="text-indigo-500">Home</a>
+    <a href="#" class="hover:text-indigo-500">Features</a>
+    <a href="#" class="hover:text-indigo-500">Pricing</a>
+    <a href="#" class="hover:text-indigo-500">About</a>
+    <button id="close-menu" class="mt-8 rounded bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">Close</button>
+</nav>
