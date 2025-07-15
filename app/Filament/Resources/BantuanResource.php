@@ -27,7 +27,7 @@ class BantuanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-lifebuoy';
 
-    protected static ?string $pluralLabel = 'Bantuan';
+    protected static ?string $pluralLabel = 'Pendaftaran Layanan';
 
     public static function form(Form $form): Form
     {
@@ -38,7 +38,7 @@ class BantuanResource extends Resource
                     $set('tanggal', $state);
                 }),
                 Select::make('id_jenisBantuan')
-                    ->label('Jenis Bantuan')
+                    ->label('Jenis Layanan')
                     ->relationship('jenisbantuan', 'name')
                     ->required(),
                 TextInput::make('kontak')->label('Kontak')->required(),
@@ -62,7 +62,7 @@ class BantuanResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->label('Nama')->searchable(),
-                TextColumn::make('jenisbantuan.name')->label('Jenis Bantuan')->searchable(),
+                TextColumn::make('jenisbantuan.name')->label('Jenis Layanan')->searchable(),
                 TextColumn::make('date_birth')->label('Tanggal Lahir')->date()->searchable(),
                 TextColumn::make('kontak')->label('Kontak')->searchable(),
                 SelectColumn::make('status')
@@ -74,7 +74,7 @@ class BantuanResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('id_jenisBantuan')
-                    ->label('Jenis Bantuan')
+                    ->label('Jenis Layanan')
                     ->relationship('jenisbantuan', 'name'),
             ])
             ->actions([

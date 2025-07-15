@@ -13,10 +13,10 @@
     <!-- nav - start -->
     <nav class="hidden gap-12 lg:flex">
         <a href="{{ route('home') }}" class="text-lg font-semibold {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
-        <a href="{{ route('kegiatan') }}" class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan</a>
+        <a href="{{ route('kegiatan') }}" class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan Sosial</a>
         <a href="{{ route('layanan') }}" class="text-lg font-semibold {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Layanan</a>
         <a href="{{ route('donasi') }}" class="text-lg font-semibold {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Donasi</a>
-        <a href="{{ route('about') }}" class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">About us</a>
+        <a href="{{ route('about') }}" class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Tentang Kami</a>
     </nav>
     <!-- nav - end -->
 
