@@ -24,4 +24,15 @@ class Bantuan extends Model
     {
         return $this->belongsTo(JenisBantuan::class, 'id_jenisBantuan');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->tanggal) && !empty($model->date_birth)) {
+                $model->tanggal = $model->date_birth;
+            }
+        });
+    }
 }
