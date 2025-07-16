@@ -13,6 +13,6 @@ class LoginResponse extends \Filament\Http\Responses\Auth\LoginResponse
         if (!auth()->user()->hasRole(['super_admin', 'admin'])) {
             return redirect()->to('/');
         }
-        return redirect()->to('/admin');
+        return redirect()->to('/santun');
     }
 }

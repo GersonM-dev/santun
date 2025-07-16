@@ -31,7 +31,7 @@
             @auth
                 <a href="{{ route('profile.show') }}" class="text-lg font-semibold text-sky-500 hover:text-sky-700 mr-2">My
                     Profile</a>
-                @if (!request()->routeIs('profile.show'))
+                @if (request()->routeIs('profile.show'))
                     <form method="POST" action="{{ route('filament.admin.auth.logout') }}" class="inline">
                         @csrf
                         <button type="submit"
@@ -79,7 +79,7 @@
         @auth
             <a href="{{ route('profile.show') }}" class="text-lg font-semibold text-sky-500 hover:text-sky-700 mr-2">My
                 Profile</a>
-            @if (!request()->routeIs('profile.show'))
+            @if (request()->routeIs('profile.show'))
                 <form method="POST" action="{{ route('filament.admin.auth.logout') }}" class="inline">
                     @csrf
                     <button type="submit"
