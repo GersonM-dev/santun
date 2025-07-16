@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\DonasiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DonasiResource\RelationManagers;
+use App\Filament\Resources\DonasiResource\RelationManagers\ItemRelationManager;
+use App\Filament\Resources\DonasiResource\RelationManagers\MoneyRelationManager;
 
 class DonasiResource extends Resource
 {
@@ -60,31 +63,27 @@ class DonasiResource extends Resource
                     ->inline(false)
                     ->required(),
 
-                Section::make('Non Materi')
+                Repeater::make('money')
+                    ->relationship('money')
                     ->schema([
-                        TextInput::make('item_name')->label('Nama Barang')->required(),
-                        TextInput::make('quantity')->label('Jumlah')->numeric()->required(),
+                        TextInput::make('total')->numeric()->required(),
+                        FileUpload::make('proof_picture')->image(),
+                    ])
+                    ->label('Materi')
+                    ->visible(fn($get) => $get('type') === 'Materi'),
+
+                Repeater::make('items')
+                    ->relationship('items')
+                    ->schema([
+                        TextInput::make('name')->required(),
+                        TextInput::make('qty')->numeric()->required(),
                         Select::make('satuan_id')
-                            ->label('Satuan')
                             ->options(\App\Models\Satuan::pluck('name', 'id'))
                             ->required(),
                     ])
+                    ->label('Non Materi')
                     ->visible(fn($get) => $get('type') === 'Non Materi'),
 
-                Section::make('Materi')
-                    ->schema([
-                        TextInput::make('money.total')
-                            ->label('Jumlah Uang')
-                            ->numeric()
-                            ->required()
-                            ->default(0)
-                            ->prefix('Rp '),
-                        FileUpload::make('money.proof_picture')
-                            ->label('Bukti Transfer')
-                            ->image()
-                            ->required(),
-                    ])
-                    ->visible(fn($get) => $get('type') === 'Materi'),
             ]);
 
     }
@@ -140,13 +139,6 @@ class DonasiResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
@@ -155,4 +147,13 @@ class DonasiResource extends Resource
             // 'edit' => Pages\EditDonasi::route('/{record}/edit'),
         ];
     }
+
+    public static function getRelations(): array
+    {
+        return [
+            MoneyRelationManager::class,
+            ItemRelationManager::class,
+        ];
+    }
+
 }
