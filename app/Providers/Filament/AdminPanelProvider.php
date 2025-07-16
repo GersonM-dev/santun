@@ -65,7 +65,7 @@ class AdminPanelProvider extends PanelProvider
                     ->myProfile(
                         shouldRegisterUserMenu: true,
                         userMenuLabel: auth()->user()->name ?? 'User',
-                        shouldRegisterNavigation: false,
+                        shouldRegisterNavigation: true,
                         navigationGroup: 'Settings',
                         hasAvatars: true,
                         slug: 'my-profile'
