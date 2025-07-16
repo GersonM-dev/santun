@@ -68,9 +68,9 @@
     <a href="{{ route('kegiatan') }}"
         class="{{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'hover:text-sky-500' }}">Kegiatan Sosial</a>
     <a href="{{ route('layanan') }}"
-        class="{{ request()->routeIs('layanan') ? 'text-sky-500' : 'hover:text-sky-500' }}">Layanan</a>
+        class="{{ request()->routeIs('layanan') ? 'text-sky-500' : 'hover:text-sky-500' }}">Pendaftaran Layanan</a>
     <a href="{{ route('donasi') }}"
-        class="{{ request()->routeIs('donasi') ? 'text-sky-500' : 'hover:text-sky-500' }}">Donasi</a>
+        class="{{ request()->routeIs('donasi') ? 'text-sky-500' : 'hover:text-sky-500' }}">Penggalangan Donasi</a>
     <a href="{{ route('about') }}"
         class="{{ request()->routeIs('about') ? 'text-sky-500' : 'hover:text-sky-500' }}">Tentang Kami</a>
     @guest
