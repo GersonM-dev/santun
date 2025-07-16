@@ -11,13 +11,27 @@
     <!-- logo - end -->
 
     <!-- nav - start -->
-    <nav class="hidden gap-12 lg:flex">
-        <a href="{{ route('home') }}" class="text-lg font-semibold {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
-        <a href="{{ route('kegiatan') }}" class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan Sosial</a>
-        <a href="{{ route('layanan') }}" class="text-lg font-semibold {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Layanan</a>
-        <a href="{{ route('donasi') }}" class="text-lg font-semibold {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Donasi</a>
-        <a href="{{ route('about') }}" class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Tentang Kami</a>
+    <nav class="hidden gap-12 lg:flex items-center">
+        <a href="{{ route('home') }}"
+            class="text-lg font-semibold {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
+        <a href="{{ route('kegiatan') }}"
+            class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan
+            Sosial</a>
+        <a href="{{ route('layanan') }}"
+            class="text-lg font-semibold {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Layanan</a>
+        <a href="{{ route('donasi') }}"
+            class="text-lg font-semibold {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Donasi</a>
+        <a href="{{ route('about') }}"
+            class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Tentang
+            Kami</a>
+        @guest
+            <a href="{{ route('login') }}"
+                class="text-lg font-semibold text-gray-600 hover:text-sky-500 active:text-sky-700">Login</a>
+        @else
+            <span class="text-lg font-semibold text-sky-500">{{ Auth::user()->name }}</span>
+        @endguest
     </nav>
+
     <!-- nav - end -->
 
     <!-- mobile menu button - start -->
@@ -36,9 +50,20 @@
 <!-- mobile menu - start -->
 <nav id="mobile-nav" data-aos="fade-left" data-aos-duration="800"
     class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white p-8 text-center text-xl font-semibold text-gray-700 transition-all duration-300 lg:hidden hidden">
-    <a href="#" class="text-indigo-500">Home</a>
-    <a href="#" class="hover:text-indigo-500">Features</a>
-    <a href="#" class="hover:text-indigo-500">Pricing</a>
-    <a href="#" class="hover:text-indigo-500">About</a>
+    <a href="{{ route('home') }}"
+        class="{{ request()->routeIs('home') ? 'text-sky-500' : 'hover:text-sky-500' }}">Home</a>
+    <a href="{{ route('kegiatan') }}"
+        class="{{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'hover:text-sky-500' }}">Kegiatan Sosial</a>
+    <a href="{{ route('layanan') }}"
+        class="{{ request()->routeIs('layanan') ? 'text-sky-500' : 'hover:text-sky-500' }}">Layanan</a>
+    <a href="{{ route('donasi') }}"
+        class="{{ request()->routeIs('donasi') ? 'text-sky-500' : 'hover:text-sky-500' }}">Donasi</a>
+    <a href="{{ route('about') }}"
+        class="{{ request()->routeIs('about') ? 'text-sky-500' : 'hover:text-sky-500' }}">Tentang Kami</a>
+    @guest
+        <a href="{{ route('login') }}" class="hover:text-sky-500">Login</a>
+    @else
+        <span class="text-sky-500">{{ Auth::user()->name }}</span>
+    @endguest
     <button id="close-menu" class="mt-8 rounded bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">Close</button>
 </nav>
