@@ -32,7 +32,7 @@
                 <a href="{{ route('profile.show') }}" class="text-lg font-semibold text-sky-500 hover:text-sky-700 mr-2">My
                     Profile</a>
                 @if (!request()->routeIs('profile.show'))
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                    <form method="POST" action="{{ route('filament.admin.auth.logout') }}" class="inline">
                         @csrf
                         <button type="submit"
                             class="text-lg font-semibold text-gray-600 hover:text-red-500 active:text-red-700 bg-transparent border-0 cursor-pointer">
@@ -41,7 +41,6 @@
                     </form>
                 @endif
             @endauth
-
         @endguest
     </nav>
 
@@ -78,18 +77,18 @@
         <a href="{{ route('login') }}" class="hover:text-sky-500">Login</a>
     @else
         @auth
-            <a href="{{ route('profile.show') }}" class="text-sky-500 hover:text-sky-700">My Profile</a>
+            <a href="{{ route('profile.show') }}" class="text-lg font-semibold text-sky-500 hover:text-sky-700 mr-2">My
+                Profile</a>
             @if (!request()->routeIs('profile.show'))
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('filament.admin.auth.logout') }}" class="inline">
                     @csrf
                     <button type="submit"
-                        class="text-gray-600 hover:text-red-500 bg-transparent border-0 cursor-pointer text-xl font-semibold">
+                        class="text-lg font-semibold text-gray-600 hover:text-red-500 active:text-red-700 bg-transparent border-0 cursor-pointer">
                         Logout
                     </button>
                 </form>
             @endif
         @endauth
-
     @endguest
     <button id="close-menu" class="mt-8 rounded bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">Close</button>
 </nav>
