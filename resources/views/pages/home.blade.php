@@ -6,14 +6,14 @@
     <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row">
         <!-- content - start -->
         <div class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
-            <h1 class="mb-8 text-4xl font-bold text-black sm:text-5xl md:mb-12 md:text-6xl">
-                Revolutionary way to build the web
+            <h1 class="mb-8 text-3xl font-bold text-black sm:text-4xl md:mb-12 md:text-5xl">
+                Selangkah Lebih Dekat Menuju Kepedulian Nyata
             </h1>
             <p class="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg">
-                This is a section of some simple filler text, also known as placeholder text. It shares some characteristics
-                of a real written text but is random.
+                Mari wujudkan transparansi dan kemudahan dalam aksi sosial melalui SANTUN - Sistem Informasi Terpadu untuk
+                Relawan ODGJ Baturaden.
             </p>
-            <div class="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
+            <!-- <div class="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
                 <a href="#"
                     class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
                     Start now
@@ -22,20 +22,20 @@
                     class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">
                     Take tour
                 </a>
-            </div>
+            </div> -->
         </div>
         <!-- content - end -->
 
         <!-- carousel image - start -->
         <div class="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 relative mb-4">
             <div id="carousel-images" class="h-full w-full relative">
-                <img src="https://images.unsplash.com/photo-1618004912476-29818d81ae2e?auto=format&q=75&fit=crop&w=1000"
+                <img src="{{ asset('image/1.jpg') }}"
                     class="carousel-img absolute inset-0 h-full w-full object-cover object-center opacity-100 transition-opacity duration-700"
                     style="z-index:2" alt="Photo 1" loading="lazy" />
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&q=75&fit=crop&w=1000"
+                <img src="{{ asset('image/2.jpg') }}"
                     class="carousel-img absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-700"
                     style="z-index:1" alt="Photo 2" loading="lazy" />
-                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&q=75&fit=crop&w=1000"
+                <img src="{{ asset('image/5.jpg') }}"
                     class="carousel-img absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-700"
                     style="z-index:0" alt="Photo 3" loading="lazy" />
             </div>
@@ -191,50 +191,50 @@
     </div>
 
     <!-- Contact Us -->
-    <div class="bg-white py-12 px-4 md:px-8 border-t border-gray-400 mt-6">
-        <div class="mx-auto max-w-2xl rounded-2xl shadow-xl/30 bg-white p-8 md:p-12">
-            <div class="mb-8 text-center">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Contact Us</h2>
-                <p class="text-gray-500 text-base md:text-lg">
-                    Ada pertanyaan, saran, atau ingin berkolaborasi? Silakan isi form berikut atau hubungi kami secara
-                    langsung.
-                </p>
+    <!-- <div class="bg-white py-12 px-4 md:px-8 border-t border-gray-400 mt-6">
+            <div class="mx-auto max-w-2xl rounded-2xl shadow-xl/30 bg-white p-8 md:p-12">
+                <div class="mb-8 text-center">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Contact Us</h2>
+                    <p class="text-gray-500 text-base md:text-lg">
+                        Ada pertanyaan, saran, atau ingin berkolaborasi? Silakan isi form berikut atau hubungi kami secara
+                        langsung.
+                    </p>
+                </div>
+                <form action="#" method="POST" class="space-y-6">
+                    @csrf
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-1 font-medium">Nama</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition" />
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-1 font-medium">Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition" />
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-1 font-medium">Pesan</label>
+                        <textarea id="message" name="message" rows="5" required
+                            class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition resize-none"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full rounded-xl bg-indigo-500 py-3 text-lg font-semibold text-white shadow transition hover:bg-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 active:bg-indigo-700">
+                        Kirim Pesan
+                    </button>
+                </form>
+                <div class="mt-10 text-center text-gray-500 text-sm">
+                    <div>
+                        <span class="font-medium text-gray-700">Email:</span> info@namadomainanda.com
+                    </div>
+                    <div>
+                        <span class="font-medium text-gray-700">WhatsApp:</span> 0812-xxxx-xxxx
+                    </div>
+                    <div>
+                        <span class="font-medium text-gray-700">Alamat:</span> Jl. Sosial No. 10, Jakarta
+                    </div>
+                </div>
             </div>
-            <form action="#" method="POST" class="space-y-6">
-                @csrf
-                <div>
-                    <label for="name" class="block text-gray-700 mb-1 font-medium">Nama</label>
-                    <input type="text" id="name" name="name" required
-                        class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition" />
-                </div>
-                <div>
-                    <label for="email" class="block text-gray-700 mb-1 font-medium">Email</label>
-                    <input type="email" id="email" name="email" required
-                        class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition" />
-                </div>
-                <div>
-                    <label for="message" class="block text-gray-700 mb-1 font-medium">Pesan</label>
-                    <textarea id="message" name="message" rows="5" required
-                        class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition resize-none"></textarea>
-                </div>
-                <button type="submit"
-                    class="w-full rounded-xl bg-indigo-500 py-3 text-lg font-semibold text-white shadow transition hover:bg-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 active:bg-indigo-700">
-                    Kirim Pesan
-                </button>
-            </form>
-            <div class="mt-10 text-center text-gray-500 text-sm">
-                <div>
-                    <span class="font-medium text-gray-700">Email:</span> info@namadomainanda.com
-                </div>
-                <div>
-                    <span class="font-medium text-gray-700">WhatsApp:</span> 0812-xxxx-xxxx
-                </div>
-                <div>
-                    <span class="font-medium text-gray-700">Alamat:</span> Jl. Sosial No. 10, Jakarta
-                </div>
-            </div>
-        </div>
-    </div>
+        </div> -->
 
     <!-- Carousel Script -->
     <script>
