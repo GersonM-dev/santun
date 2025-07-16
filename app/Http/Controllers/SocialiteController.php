@@ -17,11 +17,11 @@ class SocialiteController extends Controller
     public function callback(string $provider)
     {
         $this->validateProvider($provider);
- 
+
         $response = Socialite::driver($provider)->user();
- 
+
         $user = User::firstWhere(['email' => $response->getEmail()]);
- 
+
         if ($user) {
             $user->update([$provider . '_id' => $response->getId()]);
         } else {
@@ -32,9 +32,14 @@ class SocialiteController extends Controller
                 'password'        => '',
             ]);
         }
- 
+
         auth()->login($user);
- 
+
+        // Check user role and redirect accordingly
+        if (!in_array($user->role, ['super_admin', 'admin'])) {
+            return redirect('/');
+        }
+
         return redirect()->intended(route('filament.admin.pages.dashboard'));
     }
  
