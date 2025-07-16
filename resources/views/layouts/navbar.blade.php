@@ -28,9 +28,18 @@
             <a href="{{ route('login') }}"
                 class="text-lg font-semibold text-gray-600 hover:text-sky-500 active:text-sky-700">Login</a>
         @else
-            <span class="text-lg font-semibold text-sky-500">{{ Auth::user()->name }}</span>
+            <a href="{{ route('filament.admin.pages.my-profile') }}"
+                class="text-lg font-semibold text-sky-500 hover:text-sky-700 mr-2">My Profile</a>
+            <form method="POST" action="{{ route('filament.admin.auth.logout') }}" class="inline">
+                @csrf
+                <button type="submit"
+                    class="text-lg font-semibold text-gray-600 hover:text-red-500 active:text-red-700 bg-transparent border-0 cursor-pointer">
+                    Logout
+                </button>
+            </form>
         @endguest
     </nav>
+
 
     <!-- nav - end -->
 
@@ -63,7 +72,14 @@
     @guest
         <a href="{{ route('login') }}" class="hover:text-sky-500">Login</a>
     @else
-        <span class="text-sky-500">{{ Auth::user()->name }}</span>
+        <a href="{{ route('filament.admin.pages.my-profile') }}" class="text-sky-500 hover:text-sky-700">My Profile</a>
+        <form method="POST" action="{{ route('filament.admin.auth.logout') }}">
+            @csrf
+            <button type="submit"
+                class="text-gray-600 hover:text-red-500 bg-transparent border-0 cursor-pointer text-xl font-semibold">
+                Logout
+            </button>
+        </form>
     @endguest
     <button id="close-menu" class="mt-8 rounded bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300">Close</button>
 </nav>
