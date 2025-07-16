@@ -9,11 +9,18 @@ Route::get('/kegiatan', [HomeController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/layanan', [HomeController::class, 'layanan'])->name('layanan');
 Route::get('/donasi', [HomeController::class, 'donasi'])->name('donasi');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+
 Route::get('/kegiatan/{id}', [HomeController::class, 'detailkegiatan'])->name('kegiatan.detail');
 Route::middleware('auth')->group(function () {
     Route::get('/formlayanan', [HomeController::class, 'formlayanan'])->name('formlayanan');
     Route::get('/formdonasi', [HomeController::class, 'formdonasi'])->name('formdonasi');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'showprofile'])->name('profile.show');
+    Route::post('/profile', [\App\Http\Controllers\HomeController::class, 'updateprofile'])->name('profile.update');
+});
+
 
 Route::redirect('/login', '/santun/login')->name('login');
 

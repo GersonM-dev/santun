@@ -7,6 +7,8 @@ use App\Models\Kegiatan;
 use App\Models\JenisBantuan;
 use App\Models\TujuanDonasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -55,5 +57,33 @@ class HomeController extends Controller
     public function about()
     {
         return view('pages.about');
+    }
+
+    public function showprofile()
+    {
+        $user = Auth::user();
+        return view('profile.show', compact('user'));
+    }
+
+    public function updateprofile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|confirmed|min:6',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->password) {
+            $user->password = $request->password;
+        }
+
+        $user->save();
+
+        return redirect()->route('profile.show')->with('success', 'Profile updated!');
     }
 }
