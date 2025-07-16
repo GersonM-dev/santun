@@ -62,7 +62,7 @@ class HomeController extends Controller
     public function showprofile()
     {
         $user = Auth::user();
-        return view('profile.show', compact('user'));
+        return view('pages.profile', compact('user'));
     }
 
     public function updateprofile(Request $request)
