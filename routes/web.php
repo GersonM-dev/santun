@@ -15,7 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/formdonasi', [HomeController::class, 'formdonasi'])->name('formdonasi');
 });
 
-Route::redirect('/login', '/santun/login');
+Route::redirect('/login', '/admin/login')->name('login');
 
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
