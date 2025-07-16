@@ -69,7 +69,7 @@ class DonasiResource extends Resource
                         TextInput::make('total')->numeric()->required(),
                         FileUpload::make('proof_picture')->image(),
                     ])
-                    ->label('Materi')
+                    ->label('Materi')->maxItems(1)->columnSpanFull()
                     ->visible(fn($get) => $get('type') === 'Materi'),
 
                 Repeater::make('items')
@@ -81,7 +81,7 @@ class DonasiResource extends Resource
                             ->options(\App\Models\Satuan::pluck('name', 'id'))
                             ->required(),
                     ])
-                    ->label('Non Materi')
+                    ->label('Non Materi')->maxItems(1)->columnSpanFull()
                     ->visible(fn($get) => $get('type') === 'Non Materi'),
 
             ]);
