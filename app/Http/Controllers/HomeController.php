@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Money;
+use App\Models\Donasi;
 use App\Models\Satuan;
 use App\Models\Kegiatan;
 use App\Models\JenisBantuan;
@@ -36,6 +39,34 @@ class HomeController extends Controller
         return view('pages.form-layanan', compact('jenisBantuanList'));
     }
 
+    public function submitLayanan(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'date_birth' => 'required|date',
+            'id_jenisBantuan' => 'required|exists:jenis_bantuans,id',
+            'kontak' => 'required|string|max:100',
+            'keluhan' => 'required|string|max:1000',
+            'alamat' => 'required|string|max:1000',
+            'status' => 'required|string',
+            'tanggal' => 'required|date',
+        ]);
+
+        // Store the bantuan request
+        \App\Models\Bantuan::create([
+            'nama' => $request->nama,
+            'date_birth' => $request->date_birth,
+            'id_jenisBantuan' => $request->id_jenisBantuan,
+            'kontak' => $request->kontak,
+            'keluhan' => $request->keluhan,
+            'alamat' => $request->alamat,
+            'status' => $request->status,
+            'tanggal' => $request->tanggal,
+        ]);
+
+        return redirect()->back()->with('success', 'Permohonan bantuan berhasil diajukan!');
+    }
+
     public function layanan()
     {
         return view('pages.layanan');
@@ -47,6 +78,61 @@ class HomeController extends Controller
         $satuanList = Satuan::all();
         return view('pages.form-donasi', compact('tujuanDonasiList', 'satuanList'));
 
+    }
+
+    public function submitDonasi(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:30',
+            'date' => 'required|date',
+            'type' => 'required|in:Materi,Non Materi',
+            'tujuan_donasi_id' => 'required|exists:tujuan_donasis,id',
+            'is_anonymous' => 'nullable|boolean',
+
+            // Materi validation
+            'money_total' => 'required_if:type,Materi|nullable|numeric|min:1',
+            'money_proof_picture' => 'required_if:type,Materi|nullable|image|max:2048',
+
+            // Non Materi validation
+            'item_name' => 'required_if:type,Non Materi|nullable|string|max:255',
+            'quantity' => 'required_if:type,Non Materi|nullable|integer|min:1',
+            'satuan_id' => 'required_if:type,Non Materi|nullable|exists:satuans,id',
+        ]);
+
+        // Store the Donasi record
+        $donasi = Donasi::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'date' => $request->date,
+            'type' => $request->type,
+            'tujuan_donasi_id' => $request->tujuan_donasi_id,
+            'is_anonymous' => $request->boolean('is_anonymous'),
+        ]);
+
+        if ($request->type === 'Materi') {
+            $proofPicturePath = null;
+            if ($request->hasFile('money_proof_picture')) {
+                $proofPicturePath = $request->file('money_proof_picture')->store('donasi/proof', 'public');
+            }
+
+            Money::create([
+                'donasi_id' => $donasi->id,
+                'total' => $request->money_total,
+                'proof_picture' => $proofPicturePath,
+            ]);
+        }
+
+        if ($request->type === 'Non Materi') {
+            Item::create([
+                'donasi_id' => $donasi->id,
+                'name' => $request->item_name,
+                'qty' => $request->quantity,
+                'satuan_id' => $request->satuan_id,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Terima kasih! Donasi Anda berhasil dikirim.');
     }
 
     public function donasi()

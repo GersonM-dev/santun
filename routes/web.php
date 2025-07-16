@@ -11,9 +11,12 @@ Route::get('/donasi', [HomeController::class, 'donasi'])->name('donasi');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 Route::get('/kegiatan/{id}', [HomeController::class, 'detailkegiatan'])->name('kegiatan.detail');
+
 Route::middleware('auth')->group(function () {
     Route::get('/formlayanan', [HomeController::class, 'formlayanan'])->name('formlayanan');
+    Route::post('/formlayanan', [HomeController::class, 'submitLayanan'])->name('formlayanan.submit');
     Route::get('/formdonasi', [HomeController::class, 'formdonasi'])->name('formdonasi');
+    Route::post('/formdonasi', [HomeController::class, 'submitDonasi'])->name('formdonasi.submit');
 });
 
 Route::middleware('auth')->group(function () {
