@@ -91,7 +91,7 @@
             <div class="grid gap-6 sm:grid-cols-3">
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}" class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <im</a>g src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
+                    <img src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
                         loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
