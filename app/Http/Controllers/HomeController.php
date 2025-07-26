@@ -259,7 +259,7 @@ class HomeController extends Controller
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_POST => true,
                 CURLOPT_POSTFIELDS => [
-                    'target' => '085156106221', // <-- Change to $intl if you want to notify the customer, or keep as admin number for notifications.
+                    'target' => '085591305808', // <-- Change to $intl if you want to notify the customer, or keep as admin number for notifications.
                     'message' => $msg,
                     'countryCode' => '62',
                 ],
