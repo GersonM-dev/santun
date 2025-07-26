@@ -26,6 +26,7 @@ class User extends Authenticatable implements  HasAvatar
         'password',
         'avatar_url',
         'google_id',
+        'phone_number',
     ];
 
     /**
