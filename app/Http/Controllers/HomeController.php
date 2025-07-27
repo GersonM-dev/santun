@@ -211,7 +211,6 @@ class HomeController extends Controller
     private function notifyViaWhatsapp(array $cust, int $txId): void
     {
         try {
-            // Pick phone for Donasi, kontak for Layanan
             $phone = $cust['phone'] ?? ($cust['kontak'] ?? null);
 
             if (!$phone) {
@@ -221,7 +220,7 @@ class HomeController extends Controller
 
             $intl = (substr($phone, 0, 1) === '0') ? '62' . substr($phone, 1) : $phone;
 
-            // Build a dynamic message for Donasi
+            // Build the message as before (no changes)
             if (isset($cust['tujuan_donasi'])) {
                 $msg = "Donasi Baru!\n"
                     . "Nama: {$cust['nama']}\n"
@@ -238,9 +237,7 @@ class HomeController extends Controller
 
                 $msg .= "Anonim: {$cust['is_anonymous']}\n"
                     . "Status: {$cust['status']}\n";
-            }
-            // Build a message for Layanan
-            else {
+            } else {
                 $msg = "Permohonan Bantuan Baru!\n"
                     . "Nama: {$cust['nama']}\n"
                     . "Tanggal: {$cust['tanggal']}\n"
@@ -253,27 +250,33 @@ class HomeController extends Controller
             $msg .= "No HP: https://wa.me/{$intl}\n"
                 . "ID Transaksi: {$txId}";
 
-            $curl = curl_init();
-            curl_setopt_array($curl, [
-                CURLOPT_URL => 'https://api.fonnte.com/send',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => [
-                    'target' => '085591305808', // <-- Change to $intl if you want to notify the customer, or keep as admin number for notifications.
-                    'message' => $msg,
-                    'countryCode' => '62',
-                ],
-                CURLOPT_HTTPHEADER => ['Authorization: 1DE6DXXKg79mL8ivtLkK'],
-            ]);
-            $response = curl_exec($curl);
-            if (curl_errno($curl)) {
-                Log::error('Fonnte error: ' . curl_error($curl));
+            // Define targets (user and admin)
+            $targets = [$intl, '085591305808'];
+
+            foreach ($targets as $target) {
+                $curl = curl_init();
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://api.fonnte.com/send',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_POST => true,
+                    CURLOPT_POSTFIELDS => [
+                        'target' => $target,
+                        'message' => $msg,
+                        'countryCode' => '62',
+                    ],
+                    CURLOPT_HTTPHEADER => ['Authorization: 1DE6DXXKg79mL8ivtLkK'],
+                ]);
+                $response = curl_exec($curl);
+                if (curl_errno($curl)) {
+                    Log::error("Fonnte error (target $target): " . curl_error($curl));
+                }
+                curl_close($curl);
+                Log::info("Fonnte response (target $target): " . $response);
             }
-            curl_close($curl);
-            Log::info('Fonnte response: ' . $response);
         } catch (\Throwable $e) {
             Log::error('WhatsApp notification failed: ' . $e->getMessage());
         }
     }
+
 
 }
