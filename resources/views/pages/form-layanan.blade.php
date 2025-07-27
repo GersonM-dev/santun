@@ -5,7 +5,8 @@
         <div class="mx-auto max-w-screen-md p-4 md:p-8 rounded-xl shadow-xl/30">
             <!-- text - start -->
             <div class="mb-10 md:mb-16">
-                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Ajukan Permohonan Bantuan</h2>
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Ajukan Permohonan Bantuan
+                </h2>
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
                     Isi form berikut untuk mengajukan permohonan bantuan. Tim kami akan segera memproses permohonan Anda.
                 </p>
@@ -18,21 +19,24 @@
 
                 <!-- Nama -->
                 <div>
-                    <label for="nama" class="mb-2 block text-sm text-gray-800 font-medium">Nama<span class="text-red-500">*</span></label>
+                    <label for="nama" class="mb-2 block text-sm text-gray-800 font-medium">Nama<span
+                            class="text-red-500">*</span></label>
                     <input type="text" id="nama" name="nama" required
-                        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"/>
+                        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                 </div>
 
                 <!-- Tanggal Lahir -->
                 <div>
-                    <label for="date_birth" class="mb-2 block text-sm text-gray-800 font-medium">Tanggal Lahir<span class="text-red-500">*</span></label>
+                    <label for="date_birth" class="mb-2 block text-sm text-gray-800 font-medium">Tanggal Lahir<span
+                            class="text-red-500">*</span></label>
                     <input type="date" id="date_birth" name="date_birth" required
-                        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"/>
+                        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                 </div>
 
                 <!-- Jenis Bantuan -->
                 <div>
-                    <label for="id_jenisBantuan" class="mb-2 block text-sm text-gray-800 font-medium">Jenis Bantuan<span class="text-red-500">*</span></label>
+                    <label for="id_jenisBantuan" class="mb-2 block text-sm text-gray-800 font-medium">Jenis Bantuan<span
+                            class="text-red-500">*</span></label>
                     <select id="id_jenisBantuan" name="id_jenisBantuan" required
                         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
                         <option value="">-- Pilih Jenis Bantuan --</option>
@@ -44,21 +48,24 @@
 
                 <!-- Kontak -->
                 <div>
-                    <label for="kontak" class="mb-2 block text-sm text-gray-800 font-medium">Kontak<span class="text-red-500">*</span></label>
+                    <label for="kontak" class="mb-2 block text-sm text-gray-800 font-medium">Kontak<span
+                            class="text-red-500">*</span></label>
                     <input type="text" id="kontak" name="kontak" required
-                        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"/>
+                        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                 </div>
 
                 <!-- Keluhan -->
                 <div class="sm:col-span-2">
-                    <label for="keluhan" class="mb-2 block text-sm text-gray-800 font-medium">Keluhan<span class="text-red-500">*</span></label>
+                    <label for="keluhan" class="mb-2 block text-sm text-gray-800 font-medium">Keluhan<span
+                            class="text-red-500">*</span></label>
                     <textarea id="keluhan" name="keluhan" rows="4" required
                         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring resize-none"></textarea>
                 </div>
 
                 <!-- Alamat -->
                 <div class="sm:col-span-2">
-                    <label for="alamat" class="mb-2 block text-sm text-gray-800 font-medium">Alamat<span class="text-red-500">*</span></label>
+                    <label for="alamat" class="mb-2 block text-sm text-gray-800 font-medium">Alamat<span
+                            class="text-red-500">*</span></label>
                     <textarea id="alamat" name="alamat" rows="3" required
                         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring resize-none"></textarea>
                 </div>
@@ -80,4 +87,17 @@
             <!-- form - end -->
         </div>
     </div>
+    {{-- Script to handle show/hide of Materi/Non Materi --}}
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    confirmButtonColor: '#2563eb', // Tailwind indigo-600
+                });
+            });
+        </script>
+    @endif
 @endsection
