@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Modal for description -->
-    <div id="donationModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-transparent">
+   <div id="donationModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900/20 backdrop-blur-md">
         <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 md:p-8 mx-4">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Informasi Donasi</h2>
 
