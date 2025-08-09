@@ -58,6 +58,9 @@ class DonasiResource extends Resource
                     ->label('Tujuan Donasi')
                     ->relationship('tujuanDonasi', 'name')
                     ->required(),
+                RichEditor::make('catatan')
+                    ->label('Catatan Donatur')
+                    ->nullable(),
                 Toggle::make('is_anonymous')
                     ->label('Donasi Anonim')
                     ->default(false)

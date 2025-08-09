@@ -110,6 +110,7 @@ class HomeController extends Controller
             'date' => 'required|date',
             'type' => 'required|in:Uang,Barang,Jasa',
             'tujuan_donasi_id' => 'required|exists:tujuan_donasis,id',
+            'catatan' => 'nullable',
             'is_anonymous' => 'nullable|boolean',
 
             // Uang
@@ -133,6 +134,7 @@ class HomeController extends Controller
             'date' => $request->date,
             'type' => $request->type, // Uang | Barang | Jasa
             'tujuan_donasi_id' => $request->tujuan_donasi_id,
+            'catatan' => $request->catatan,
             'is_anonymous' => $request->boolean('is_anonymous'),
         ]);
 

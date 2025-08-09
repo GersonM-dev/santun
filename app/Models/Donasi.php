@@ -12,6 +12,7 @@ class Donasi extends Model
         'date',
         'type',
         'tujuan_donasi_id',
+        'catatan',
         'is_anonymous',
     ];
 
