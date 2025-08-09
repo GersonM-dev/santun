@@ -15,13 +15,13 @@ Route::get('/kegiatan/{id}', [HomeController::class, 'detailkegiatan'])->name('k
 Route::middleware('auth')->group(function () {
     Route::get('/formlayanan', [HomeController::class, 'formlayanan'])->name('formlayanan');
     Route::post('/formlayanan', [HomeController::class, 'submitLayanan'])->name('formlayanan.submit');
-    Route::get('/formdonasi', [HomeController::class, 'formdonasi'])->name('formdonasi');
+    Route::get('/formdonasi/{slug?}', [HomeController::class, 'formdonasi'])->whereIn('slug', ['materi', 'non-materi'])->name('formdonasi');
     Route::post('/formdonasi', [HomeController::class, 'submitDonasi'])->name('formdonasi.submit');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'showprofile'])->name('profile.show');
-    Route::post('/profile', [\App\Http\Controllers\HomeController::class, 'updateprofile'])->name('profile.update');
+    Route::get('/profile', [HomeController::class, 'showprofile'])->name('profile.show');
+    Route::post('/profile', [HomeController::class, 'updateprofile'])->name('profile.update');
 });
 
 

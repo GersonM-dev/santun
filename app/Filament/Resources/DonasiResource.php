@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Dom\Text;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Tables;
 use App\Models\Donasi;
 use Filament\Forms\Form;
@@ -69,7 +70,7 @@ class DonasiResource extends Resource
                         TextInput::make('total')->numeric()->required(),
                         FileUpload::make('proof_picture')->image(),
                     ])
-                    ->label('Materi')->maxItems(1)->columnSpanFull()
+                    ->label('Uang')->maxItems(1)->columnSpanFull()
                     ->visible(fn($get) => $get('type') === 'Materi'),
 
                 Repeater::make('items')
@@ -81,7 +82,16 @@ class DonasiResource extends Resource
                             ->options(\App\Models\Satuan::pluck('name', 'id'))
                             ->required(),
                     ])
-                    ->label('Non Materi')->maxItems(1)->columnSpanFull()
+                    ->label('Barang')->maxItems(1)->columnSpanFull()
+                    ->visible(fn($get) => $get('type') === 'Non Materi'),
+
+                Repeater::make('jasa')
+                    ->relationship('jasa')
+                    ->schema([
+                        RichEditor::make('description_jasa')->required(),
+                        FileUpload::make('jasa_attachment')->image(),
+                    ])
+                    ->label('Jasa')->maxItems(1)->columnSpanFull()
                     ->visible(fn($get) => $get('type') === 'Non Materi'),
 
             ]);

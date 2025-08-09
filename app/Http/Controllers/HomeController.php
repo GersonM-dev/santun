@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Jasa;
 use App\Models\Money;
 use App\Models\Donasi;
 use App\Models\Satuan;
@@ -85,13 +86,21 @@ class HomeController extends Controller
         return view('pages.layanan');
     }
 
-    public function formdonasi()
+    public function formdonasi(?string $slug = null)
     {
+        $mode = null;
+        if ($slug === 'materi') {
+            $mode = 'materi';       // Tipe hanya: Uang / Barang
+        } elseif ($slug === 'non-materi') {
+            $mode = 'non-materi';   // Tipe diset otomatis ke Jasa (dropdown disembunyikan)
+        }
+
         $tujuanDonasiList = TujuanDonasi::all();
         $satuanList = Satuan::all();
-        return view('pages.form-donasi', compact('tujuanDonasiList', 'satuanList'));
 
+        return view('pages.form-donasi', compact('tujuanDonasiList', 'satuanList', 'mode'));
     }
+
 
     public function submitDonasi(Request $request)
     {
@@ -99,31 +108,36 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:30',
             'date' => 'required|date',
-            'type' => 'required|in:Materi,Non Materi',
+            'type' => 'required|in:Uang,Barang,Jasa',
             'tujuan_donasi_id' => 'required|exists:tujuan_donasis,id',
             'is_anonymous' => 'nullable|boolean',
 
-            // Materi validation
-            'money_total' => 'required_if:type,Materi|nullable|numeric|min:1',
-            'money_proof_picture' => 'required_if:type,Materi|nullable|image|max:2048',
+            // Uang
+            'money_total' => 'required_if:type,Uang|nullable|numeric|min:1',
+            'money_proof_picture' => 'required_if:type,Uang|nullable|image|max:2048',
 
-            // Non Materi validation
-            'item_name' => 'required_if:type,Non Materi|nullable|string|max:255',
-            'quantity' => 'required_if:type,Non Materi|nullable|integer|min:1',
-            'satuan_id' => 'required_if:type,Non Materi|nullable|exists:satuans,id',
+            // Barang
+            'item_name' => 'required_if:type,Barang|nullable|string|max:255',
+            'quantity' => 'required_if:type,Barang|nullable|integer|min:1',
+            'satuan_id' => 'required_if:type,Barang|nullable|exists:satuans,id',
+
+            // Jasa
+            'description_jasa' => 'required_if:type,Jasa|nullable|string|max:5000',
+            'jasa_attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:4096',
         ]);
 
-        // Store the Donasi record
+        // Simpan Donasi
         $donasi = Donasi::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'date' => $request->date,
-            'type' => $request->type,
+            'type' => $request->type, // Uang | Barang | Jasa
             'tujuan_donasi_id' => $request->tujuan_donasi_id,
             'is_anonymous' => $request->boolean('is_anonymous'),
         ]);
 
-        if ($request->type === 'Materi') {
+        // Tipe Uang
+        if ($request->type === 'Uang') {
             $proofPicturePath = null;
             if ($request->hasFile('money_proof_picture')) {
                 $proofPicturePath = $request->file('money_proof_picture')->store('donasi/proof', 'public');
@@ -136,7 +150,8 @@ class HomeController extends Controller
             ]);
         }
 
-        if ($request->type === 'Non Materi') {
+        // Tipe Barang
+        if ($request->type === 'Barang') {
             Item::create([
                 'donasi_id' => $donasi->id,
                 'name' => $request->item_name,
@@ -145,7 +160,22 @@ class HomeController extends Controller
             ]);
         }
 
-        // Build WhatsApp notification data
+        // Tipe Jasa
+        if ($request->type === 'Jasa') {
+            $attachmentPath = null;
+            if ($request->hasFile('jasa_attachment')) {
+                $attachmentPath = $request->file('jasa_attachment')->store('donasi/jasa', 'public');
+            }
+
+            // Ganti `Jasa` dengan nama model/tabel yang kamu pakai untuk menyimpan detail jasa
+            Jasa::create([
+                'donasi_id' => $donasi->id,
+                'description' => $request->description_jasa,
+                'attachment' => $attachmentPath,
+            ]);
+        }
+
+        // Data notifikasi WhatsApp
         $cust = [
             'nama' => $request->name,
             'phone' => $request->phone,
@@ -153,22 +183,26 @@ class HomeController extends Controller
             'tanggal' => $request->date,
             'tujuan_donasi' => TujuanDonasi::find($request->tujuan_donasi_id)->name,
             'is_anonymous' => $request->boolean('is_anonymous') ? 'Ya' : 'Tidak',
-            'status' => isset($request->status) ? $request->status : 'Terkirim',
+            'status' => $request->status ?? 'Terkirim',
         ];
 
-        if ($request->type === 'Materi') {
+        if ($request->type === 'Uang') {
             $cust['money_total'] = $request->money_total;
-        } elseif ($request->type === 'Non Materi') {
+        } elseif ($request->type === 'Barang') {
             $cust['item_name'] = $request->item_name;
             $cust['quantity'] = $request->quantity;
             $cust['satuan'] = Satuan::find($request->satuan_id)->name;
+        } elseif ($request->type === 'Jasa') {
+            $cust['description_jasa'] = $request->description_jasa;
+            $cust['jasa_attachment'] = $request->hasFile('jasa_attachment') ? 'Ada' : 'Tidak ada';
         }
 
-        // Notify via WhatsApp
+        // Kirim notifikasi WA
         $this->notifyViaWhatsapp($cust, $donasi->id);
 
-        return redirect()->back()->with('success', 'Terima kasih! Donasi Anda berhasil dikirim.');
+        return back()->with('success', 'Terima kasih! Donasi Anda berhasil dikirim.');
     }
+
 
     public function donasi()
     {

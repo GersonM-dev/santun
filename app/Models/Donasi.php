@@ -29,4 +29,9 @@ class Donasi extends Model
     {
         return $this->hasOne(Money::class);
     }
+
+    public function jasa()
+    {
+        return $this->hasOne(Jasa::class);
+    }
 }
