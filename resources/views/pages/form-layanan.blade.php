@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Modal: Info Layanan -->
-    <div id="layananModal" class="fixed inset-0 z-50 hidden pointer-events-none flex items-center justify-center">
+    <div id="layananModal" class="fixed inset-0 z-50 pointer-events-none flex items-center justify-center">
         <!-- backdrop (doesn't block scroll/touch) -->
         <div class="absolute inset-0 bg-gray-900/20 backdrop-blur-sm pointer-events-none"></div>
 
