@@ -105,7 +105,7 @@
     </div>
 
     <div class="bg-white py-8">
-        <div class="mx-auto max-w-2xl p-4 md:p-8 rounded-xl shadow-xl/30">
+        <div class="mx-auto max-w-3xl p-4 md:p-8 rounded-xl shadow-xl/30">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Form Donasi</h2>
 
             <form action="{{ route('formdonasi.submit') }}" method="POST" enctype="multipart/form-data"
