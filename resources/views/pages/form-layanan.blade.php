@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Modal: Info Layanan -->
-    <div id="layananModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900/20 backdrop-blur-sm">
+    <div id="layananModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900/20 backdrop-blur-sm">
         <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full mx-4 p-6 md:p-8">
             <div class="flex items-start justify-between mb-4">
                 <h3 class="text-xl font-semibold text-gray-800">Informasi Layanan</h3>
