@@ -2,8 +2,12 @@
 
 @section('content')
     <!-- Modal: Info Layanan -->
-    <div id="layananModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900/20 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full mx-4 p-6 md:p-8">
+    <div id="layananModal" class="fixed inset-0 z-50 hidden pointer-events-none flex items-center justify-center">
+        <!-- backdrop (doesn't block scroll/touch) -->
+        <div class="absolute inset-0 bg-gray-900/20 backdrop-blur-sm pointer-events-none"></div>
+
+        <!-- panel (interactive) -->
+        <div class="pointer-events-auto bg-white rounded-2xl shadow-2xl max-w-3xl w-full mx-4 p-6 md:p-8 relative">
             <div class="flex items-start justify-between mb-4">
                 <h3 class="text-xl font-semibold text-gray-800">Informasi Layanan</h3>
                 <button type="button" id="layananModalClose"
@@ -12,7 +16,6 @@
 
             {{-- Content wrapper (long content scrolls) --}}
             <div class="prose max-w-none text-gray-700 md:max-h-[65vh] overflow-y-auto space-y-4">
-
                 {{-- Kesehatan Jiwa --}}
                 @if(($layananSlug ?? null) === 'kesehatan-jiwa')
                     <h4 class="text-lg font-semibold">Bantuan Khusus Kesehatan Jiwa</h4>
@@ -74,7 +77,7 @@
                     <p>Dengan adanya sistem pendaftaran ini, diharapkan proses pemberian bantuan dapat berjalan lebih efisien,
                         terorganisir, dan menjangkau lebih banyak masyarakat yang membutuhkan.</p>
 
-                    {{-- Default (no slug) --}}
+                    {{-- Default --}}
                 @else
                     <p>Pilih salah satu jenis layanan di atas untuk melihat detailnya. Setelah memilih, lengkapi formulir
                         pendaftaran di bawah ini.</p>
@@ -90,7 +93,7 @@
         </div>
     </div>
 
-    {{-- Modal script --}}
+    {{-- Modal script (background remains scrollable) --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const slug = @json($layananSlug ?? 'default');
@@ -100,28 +103,26 @@
             const key = 'layanan_modal_seen_' + slug;
 
             function openModal() {
+                if (!modal) return;
                 modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                document.documentElement.classList.add('overflow-hidden');
+                // DO NOT lock scroll: no overflow-hidden on html/body
             }
             function closeModal() {
                 modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.documentElement.classList.remove('overflow-hidden');
                 try { sessionStorage.setItem(key, '1'); } catch (e) { }
             }
 
-            // Show only once per session per slug
             try {
                 if (!sessionStorage.getItem(key) && slug !== 'default') openModal();
             } catch (e) { openModal(); }
 
             btnX?.addEventListener('click', closeModal);
             btnOk?.addEventListener('click', closeModal);
-            modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            // No click-backdrop close because backdrop is non-interactive (keeps background scrollable)
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
         });
     </script>
+
 
 
     <div class="bg-white py-6 sm:py-8 lg:py-12">
