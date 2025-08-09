@@ -19,7 +19,7 @@
                 <a href="{{ route('formdonasi', 'materi') }}" class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('image/materi.jpg') }}"
                         loading="lazy" alt="Photo by Fakurian Design"
-                        class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        class="absolute inset-0 h-full w-full object-contain object-center transition duration-200 group-hover:scale-110" />
 
                     <div
                         class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
@@ -35,7 +35,7 @@
                 <a href="{{ route('formdonasi' , 'non-materi') }}" class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('image/non-materi.jpg') }}"
                         loading="lazy" alt="Photo by Fakurian Design"
-                        class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        class="absolute inset-0 h-full w-full object-contain object-center transition duration-200 group-hover:scale-110" />
 
                     <div
                         class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
