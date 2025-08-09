@@ -113,7 +113,7 @@
             }
 
             try {
-                if (!sessionStorage.getItem(key) && slug !== 'default') openModal();
+                // if (!sessionStorage.getItem(key) && slug !== 'default') openModal();
             } catch (e) { openModal(); }
 
             btnX?.addEventListener('click', closeModal);
