@@ -13,7 +13,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/kegiatan/{id}', [HomeController::class, 'detailkegiatan'])->name('kegiatan.detail');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/formlayanan', [HomeController::class, 'formlayanan'])->name('formlayanan');
+    Route::get('/formlayanan/{slug?}', [HomeController::class, 'formlayanan'])->name('formlayanan');
     Route::post('/formlayanan', [HomeController::class, 'submitLayanan'])->name('formlayanan.submit');
     Route::get('/formdonasi/{slug?}', [HomeController::class, 'formdonasi'])->whereIn('slug', ['materi', 'non-materi'])->name('formdonasi');
     Route::post('/formdonasi', [HomeController::class, 'submitDonasi'])->name('formdonasi.submit');

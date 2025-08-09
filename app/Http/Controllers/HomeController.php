@@ -35,11 +35,28 @@ class HomeController extends Controller
         return view('pages.detail-kegiatan', compact('kegiatan'));
     }
 
-    public function formlayanan()
+    public function formlayanan(?string $slug = null)
     {
-        $jenisBantuanList = JenisBantuan::all(); // Model sesuai relasi di Select::make
-        return view('pages.form-layanan', compact('jenisBantuanList'));
+        $jenisBantuanList = JenisBantuan::all();
+
+        $slugMap = [
+            'kesehatan-jiwa' => 'Bantuan Khusus Kesehatan Jiwa',
+            'pendidikan' => 'Bantuan Pendidikan',
+            'sosial-umum' => 'Bantuan Sosial Umum',
+        ];
+
+        $prefillJenisId = null;
+        $layananSlug = null;
+
+        if ($slug && isset($slugMap[$slug])) {
+            $layananSlug = $slug; // for modal
+            $prefillJenisId = JenisBantuan::where('name', $slugMap[$slug])->value('id');
+        }
+
+        return view('pages.form-layanan', compact('jenisBantuanList', 'prefillJenisId', 'layananSlug'));
     }
+
+
 
     public function submitLayanan(Request $request)
     {
