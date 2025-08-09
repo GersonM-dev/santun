@@ -26,6 +26,11 @@
             @include('layouts.footer')
         </div>
     </div>
+    <a href="https://wa.me/6285591305808" target="_blank"
+        class="fixed bottom-4 right-4 z-50 bg-green-500 rounded-full shadow-lg p-3 hover:bg-green-600 transition"
+        aria-label="Chat via WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-10 h-10">
+    </a>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- script - start -->
