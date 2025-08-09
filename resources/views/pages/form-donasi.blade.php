@@ -1,11 +1,115 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white py-8">
-  <div class="mx-auto max-w-2xl p-4 md:p-8 rounded-xl shadow-xl/30">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Form Donasi</h2>
 
-    <form action="{{ route('formdonasi.submit') }}" method="POST" enctype="multipart/form-data" class="grid gap-6 md:grid-cols-2">
+    <!-- Modal for description -->
+    <div id="donationModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 md:p-8 mx-4">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Informasi Donasi</h2>
+
+            @if(($mode ?? null) === 'materi')
+                <div class="prose max-w-none text-gray-700 space-y-4 md:max-h-[65vh] overflow-y-auto">
+                    <h3 class="text-lg font-semibold text-gray-900">Materi</h3>
+                    <p>
+                        Donasi materi adalah bantuan yang diberikan dalam bentuk uang atau barang yang memiliki nilai ekonomis,
+                        yang digunakan untuk mendukung kegiatan dan layanan kemanusiaan Relawan ODGJ Baturaden. Bantuan ini
+                        menjadi sumber penting untuk menyediakan kebutuhan pasien ODGJ, mendukung pendidikan anak kurang mampu,
+                        dan membantu masyarakat yang mengalami kesulitan hidup.
+                    </p>
+                    <p class="font-semibold">Bentuk donasi Materi dapat berupa:</p>
+
+                    <h4 class="font-semibold">1. Donasi Uang</h4>
+                    <p>
+                        Donasi dalam bentuk uang dapat disalurkan melalui tunai atau transfer bank. Dana ini digunakan untuk
+                        membiayai operasional, perawatan pasien, pengadaan perlengkapan kesehatan, dukungan pendidikan, serta
+                        kegiatan sosial lainnya.
+                    </p>
+                    <div class="rounded-lg border bg-gray-50 p-4">
+                        <p class="font-medium">📌 Rekening Donasi Uang:</p>
+                        <p>Bank BRI</p>
+                        <p>No. Rekening: <span class="font-semibold">12345678</span></p>
+                        <p>Atas Nama: <span class="font-semibold">Muhajianto</span></p>
+                    </div>
+
+                    <h4 class="font-semibold">2. Donasi Barang</h4>
+                    <p>Bantuan dalam bentuk barang dapat meliputi:</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Kebutuhan pokok: beras, minyak, gula, dan bahan pangan lainnya.</li>
+                        <li>Perlengkapan kesehatan: obat-obatan, alat medis sederhana, alat bantu mobilitas.</li>
+                        <li>Pakaian layak pakai untuk semua usia.</li>
+                        <li>Perlengkapan sekolah: buku, alat tulis, tas, dan seragam.</li>
+                        <li>Barang lain yang bermanfaat bagi penerima bantuan.</li>
+                    </ul>
+                    <div class="rounded-lg border bg-gray-50 p-4">
+                        <p class="font-medium">📦 Donasi barang dapat dikirim langsung ke alamat:</p>
+                        <p>Relawan ODGJ Baturaden</p>
+                        <p>Desa Kemutug Kidul, Gg. Banowati No. 17, RT 04/RW 03,</p>
+                        <p>Kecamatan Baturaden, Kabupaten Banyumas, Jawa Tengah</p>
+                    </div>
+
+                    <p class="bg-indigo-50 border border-indigo-100 text-indigo-800 rounded-lg p-4">
+                        💙 Salurkan donasi materi Anda, baik berupa uang maupun barang, untuk memberikan harapan baru bagi
+                        pelayanan Kesehatan Jiwa (ODGJ), mendukung pendidikan anak kurang mampu, serta membantu masyarakat yang
+                        membutuhkan di bidang sosial umum. Setiap kontribusi Anda, sekecil apa pun, adalah langkah berharga yang
+                        membawa perubahan nyata bagi banyak kehidupan.
+                    </p>
+                </div>
+
+            @elseif(($mode ?? null) === 'non-materi')
+                <div class="prose max-w-none text-gray-700 space-y-4 md:max-h-[65vh] overflow-y-auto">
+                    <h3 class="text-lg font-semibold text-gray-900">Non-Materi</h3>
+                    <p>
+                        Donasi non materi adalah dukungan yang diberikan dalam bentuk tenaga, waktu, pemikiran, atau keahlian,
+                        yang tidak berwujud fisik namun memiliki nilai yang sangat besar bagi keberlangsungan kegiatan sosial.
+                        Walaupun tidak berbentuk uang atau barang, kontribusi ini mampu memberikan dampak yang nyata dan
+                        berkelanjutan bagi penerima manfaat.
+                    </p>
+                    <p>
+                        Bantuan non materi sangat penting bagi Relawan ODGJ Baturaden, karena banyak program sosial yang
+                        memerlukan keterlibatan langsung, kepedulian, dan kerja sama dari berbagai pihak. Melalui donasi non
+                        materi, setiap individu dapat menjadi bagian dari perubahan positif, meskipun tidak memberikan sumbangan
+                        dalam bentuk finansial.
+                    </p>
+                    <p class="font-semibold">Bentuk Donasi Non Materi dapat meliputi:</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li><span class="font-medium">Tenaga:</span> membantu di lapangan, mendampingi pasien ODGJ, atau
+                            menyalurkan bantuan.</li>
+                        <li><span class="font-medium">Waktu:</span> berpartisipasi dalam kunjungan pasien, pendampingan belajar,
+                            atau kegiatan sosial.</li>
+                        <li><span class="font-medium">Pemikiran:</span> memberi ide dan saran untuk pengembangan program.</li>
+                        <li><span class="font-medium">Keahlian:</span> menyumbangkan kemampuan khusus seperti konseling,
+                            pelatihan, atau layanan kesehatan.</li>
+                    </ul>
+                    <p class="bg-indigo-50 border border-indigo-100 text-indigo-800 rounded-lg p-4">
+                        💙 Mari berikan donasi non materi Anda dengan terlibat langsung untuk mendukung pelayanan Kesehatan Jiwa
+                        (ODGJ), membantu pendidikan anak kurang mampu, dan memenuhi kebutuhan sosial umum. Setiap kontribusi
+                        Anda adalah langkah nyata membawa perubahan. Setiap kontribusi yang Anda berikan akan menjadi bagian
+                        penting dari langkah besar dalam membangun masyarakat yang lebih peduli dan saling mendukung.
+                    </p>
+                </div>
+
+            @else
+                <div class="prose max-w-none text-gray-700 space-y-4 md:max-h-[65vh] overflow-y-auto">
+                    <p>Pilih tipe donasi yang sesuai: <span class="font-medium">Uang</span>, <span
+                            class="font-medium">Barang</span>, atau <span class="font-medium">Jasa</span>. Setelah memilih, Anda
+                        akan melihat panduan singkat sesuai pilihan.</p>
+                </div>
+            @endif
+
+            <div class="mt-6 flex justify-end">
+                <button id="closeModal"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg">Saya
+                    Mengerti</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white py-8">
+        <div class="mx-auto max-w-2xl p-4 md:p-8 rounded-xl shadow-xl/30">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Form Donasi</h2>
+
+            <form action="{{ route('formdonasi.submit') }}" method="POST" enctype="multipart/form-data"
+                class="grid gap-6 md:grid-cols-2">
                 @csrf
 
                 <!-- LEFT: Info Donatur -->
@@ -88,7 +192,8 @@
                             <option value="">-- Pilih Tujuan --</option>
                             @foreach($tujuanDonasiList as $td)
                                 <option value="{{ $td->id }}" {{ old('tujuan_donasi_id') == $td->id ? 'selected' : '' }}>
-                                    {{ $td->name }}</option>
+                                    {{ $td->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('tujuan_donasi_id')
@@ -181,7 +286,8 @@
                                     <option value="">-- Pilih Satuan --</option>
                                     @foreach($satuanList as $satuan)
                                         <option value="{{ $satuan->id }}" {{ old('satuan_id') == $satuan->id ? 'selected' : '' }}>
-                                            {{ $satuan->name }}</option>
+                                            {{ $satuan->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('satuan_id')
@@ -196,8 +302,8 @@
                         <div class="mt-4 p-4 rounded-xl bg-gray-50 border">
                             <h3 class="font-semibold text-indigo-700 mb-3">Donasi Jasa</h3>
                             <div class="mb-3">
-                                <label for="description_jasa" class="block font-medium text-gray-800 mb-1">Deskripsi Jasa<span
-                                        class="text-red-500">*</span></label>
+                                <label for="description_jasa" class="block font-medium text-gray-800 mb-1">Deskripsi
+                                    Jasa<span class="text-red-500">*</span></label>
                                 <textarea name="description_jasa" id="description_jasa" rows="4"
                                     class="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 focus:ring">{{ old('description_jasa') }}</textarea>
                                 @error('description_jasa')
@@ -208,7 +314,8 @@
                             <div>
                                 <label for="jasa_attachment" class="block font-medium text-gray-800 mb-1">Lampiran
                                     (opsional)</label>
-                                <input type="file" name="jasa_attachment" id="jasa_attachment" accept="image/*,application/pdf"
+                                <input type="file" name="jasa_attachment" id="jasa_attachment"
+                                    accept="image/*,application/pdf"
                                     class="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 focus:ring" />
                                 @error('jasa_attachment')
                                     <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
@@ -225,92 +332,103 @@
                         Donasi</button>
                 </div>
             </form>
-  </div>
-</div>
+        </div>
+    </div>
 
-{{-- SweetAlert (pastikan SweetAlert2 sudah dimuat di layout) --}}
-@if(session('success'))
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: @json(session('success')),
-        confirmButtonColor: '#2563eb',
-      });
-    });
-  </script>
-@endif
+    {{-- SweetAlert (pastikan SweetAlert2 sudah dimuat di layout) --}}
+    @if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: @json(session('success')),
+                    confirmButtonColor: '#2563eb',
+                });
+            });
+        </script>
+    @endif
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const MODE = @json($mode ?? null); // 'materi' | 'non-materi' | null
-
-    const typeSelect = document.getElementById('type');
-    const sections = {
-      'Uang': document.getElementById('uang-section'),
-      'Barang': document.getElementById('barang-section'),
-      'Jasa': document.getElementById('jasa-section')
-    };
-
-    function setSection(sectionEl, visible) {
-      if (!sectionEl) return;
-      if (visible) {
-        sectionEl.classList.remove('hidden');
-        sectionEl.querySelectorAll('input, select, textarea').forEach(el => {
-          el.disabled = false;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('donationModal');
+            const closeModal = document.getElementById('closeModal');
+            modal.classList.remove('hidden');
+            closeModal.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
         });
-      } else {
-        sectionEl.classList.add('hidden');
-        sectionEl.querySelectorAll('input, select, textarea').forEach(el => {
-          el.disabled = true;
-          el.removeAttribute('required');
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const MODE = @json($mode ?? null); // 'materi' | 'non-materi' | null
+
+            const typeSelect = document.getElementById('type');
+            const sections = {
+                'Uang': document.getElementById('uang-section'),
+                'Barang': document.getElementById('barang-section'),
+                'Jasa': document.getElementById('jasa-section')
+            };
+
+            function setSection(sectionEl, visible) {
+                if (!sectionEl) return;
+                if (visible) {
+                    sectionEl.classList.remove('hidden');
+                    sectionEl.querySelectorAll('input, select, textarea').forEach(el => {
+                        el.disabled = false;
+                    });
+                } else {
+                    sectionEl.classList.add('hidden');
+                    sectionEl.querySelectorAll('input, select, textarea').forEach(el => {
+                        el.disabled = true;
+                        el.removeAttribute('required');
+                    });
+                }
+            }
+
+            function applyRequiredFor(val) {
+                if (val === 'Uang') {
+                    document.getElementById('money_total')?.setAttribute('required', 'required');
+                    document.getElementById('money_proof_picture')?.setAttribute('required', 'required');
+                }
+                if (val === 'Barang') {
+                    document.getElementById('item_name')?.setAttribute('required', 'required');
+                    document.getElementById('quantity')?.setAttribute('required', 'required');
+                    document.getElementById('satuan_id')?.setAttribute('required', 'required');
+                }
+                if (val === 'Jasa') {
+                    document.getElementById('description_jasa')?.setAttribute('required', 'required');
+                }
+            }
+
+            function toggleSections() {
+                const val = typeSelect?.value;
+                setSection(sections['Uang'], val === 'Uang');
+                setSection(sections['Barang'], val === 'Barang');
+                setSection(sections['Jasa'], val === 'Jasa');
+                applyRequiredFor(val);
+            }
+
+            // Init: hide all
+            Object.values(sections).forEach(sec => setSection(sec, false));
+
+            if (MODE === 'non-materi') {
+                // Force ke Jasa, tanpa dropdown
+                setSection(sections['Jasa'], true);
+                applyRequiredFor('Jasa');
+                return; // Stop di sini
+            }
+
+            if (MODE === 'materi') {
+                // Default pilih Uang jika belum ada old('type')
+                if (typeSelect && !typeSelect.value) {
+                    typeSelect.value = @json(old('type', 'Uang'));
+                }
+            }
+
+            typeSelect?.addEventListener('change', toggleSections);
+            toggleSections();
         });
-      }
-    }
-
-    function applyRequiredFor(val){
-      if (val === 'Uang') {
-        document.getElementById('money_total')?.setAttribute('required', 'required');
-        document.getElementById('money_proof_picture')?.setAttribute('required', 'required');
-      }
-      if (val === 'Barang') {
-        document.getElementById('item_name')?.setAttribute('required', 'required');
-        document.getElementById('quantity')?.setAttribute('required', 'required');
-        document.getElementById('satuan_id')?.setAttribute('required', 'required');
-      }
-      if (val === 'Jasa') {
-        document.getElementById('description_jasa')?.setAttribute('required', 'required');
-      }
-    }
-
-    function toggleSections() {
-      const val = typeSelect?.value;
-      setSection(sections['Uang'], val === 'Uang');
-      setSection(sections['Barang'], val === 'Barang');
-      setSection(sections['Jasa'], val === 'Jasa');
-      applyRequiredFor(val);
-    }
-
-    // Init: hide all
-    Object.values(sections).forEach(sec => setSection(sec, false));
-
-    if (MODE === 'non-materi') {
-      // Force ke Jasa, tanpa dropdown
-      setSection(sections['Jasa'], true);
-      applyRequiredFor('Jasa');
-      return; // Stop di sini
-    }
-
-    if (MODE === 'materi') {
-      // Default pilih Uang jika belum ada old('type')
-      if (typeSelect && !typeSelect.value) {
-        typeSelect.value = @json(old('type', 'Uang'));
-      }
-    }
-
-    typeSelect?.addEventListener('change', toggleSections);
-    toggleSections();
-  });
-</script>
+    </script>
 @endsection
