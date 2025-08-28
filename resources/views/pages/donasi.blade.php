@@ -16,7 +16,7 @@
             <div class="grid gap-6 sm:grid-cols-2">
                 <!-- product - start -->
                 <a href="{{ route('formdonasi', 'materi') }}" class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('image/materi.jpg') }}"
+                    <img src="{{ asset('donasi materi.PNG') }}"
                         loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-contain object-center transition duration-200 group-hover:scale-110" />
 
@@ -32,7 +32,7 @@
 
                 <!-- product - start -->
                 <a href="{{ route('formdonasi' , 'non-materi') }}" class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('image/non-materi.jpg') }}"
+                    <img src="{{ asset('donasi non-materi.PNG') }}"
                         loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-contain object-center transition duration-200 group-hover:scale-110" />
 

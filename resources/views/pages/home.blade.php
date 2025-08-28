@@ -6,7 +6,7 @@
     <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row">
         <!-- content - start -->
         <div class="flex flex-col justify-center ms-12 sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
-            <h1 class="mb-8 text-xl font-bold text-justify text-black sm:text-xl md:mb-12 md:text-3xl">
+            <h1 class="mb-4 text-xl font-bold text-justify text-black sm:text-xl md:mb-12 md:text-3xl">
                 Mari bersama berbagi kebaikan, saling mendukung, dan memberi harapan baru lewat Relawan ODGJ Baturraden</h1>
             <p class="mb-8 leading-relaxed text-justify text-gray-500 md:mb-12 xl:text-md">
                 Dengan semangat kepedulian, Relawan ODGJ Baturraden berkomitmen untuk memberikan layanan sosial,
@@ -151,7 +151,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formdonasi') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
+                    <img src="{{ asset('donasi materi.PNG') }}"
                         loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -168,7 +168,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formdonasi') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620241608701-94ef138c7ec9?auto=format&q=75&fit=crop&w=750"
+                    <img src="{{ asset('donasi non-materi.PNG') }}"
                         loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
