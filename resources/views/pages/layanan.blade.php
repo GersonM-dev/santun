@@ -81,7 +81,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($bantuans as $b)
+                        @foreach ($bantuan as $b)
                             <tr>
                                 <td>{{ $b->created_at->format('d M Y') }}</td>
                                 <td>{{ $b->nama }}</td>
