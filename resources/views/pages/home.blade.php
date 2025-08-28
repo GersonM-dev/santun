@@ -8,22 +8,12 @@
         <div class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
             <h1 class="mb-8 text-xl font-bold text-justify text-black sm:text-xl md:mb-12 md:text-3xl">
                 Mari bersama berbagi kebaikan, saling mendukung, dan memberi harapan baru lewat Relawan ODGJ Baturraden</h1>
-            <p class="mb-8 leading-relaxed text-justify text-gray-500 md:mb-12 lg:w-4/5 xl:text-md">
+            <p class="mb-8 leading-relaxed text-justify text-gray-500 md:mb-12 xl:text-md">
                 Dengan semangat kepedulian, Relawan ODGJ Baturraden berkomitmen untuk memberikan layanan sosial,
                 pendampingan, dan aksi nyata yang transparan serta berkelanjutan. Melalui SANTUN (Sistem Informasi Terpadu
                 untuk Relawan ODGJ Baturraden), kami hadir untuk memudahkan Anda dalam berkontribusi, berdonasi, maupun
                 mendaftar layanan sosial secara cepat, transparan, dan terpercaya.
             </p>
-            <!-- <div class="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
-                    <a href="#"
-                        class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
-                        Start now
-                    </a>
-                    <a href="#"
-                        class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">
-                        Take tour
-                    </a>
-                </div> -->
         </div>
         <!-- content - end -->
 
