@@ -100,7 +100,8 @@ class HomeController extends Controller
 
     public function layanan()
     {
-        return view('pages.layanan');
+        $bantuan = \App\Models\Bantuan::orderBy('created_at', 'desc')->paginate(10);
+        return view('pages.layanan', compact('bantuan'));
     }
 
     public function formdonasi(?string $slug = null)

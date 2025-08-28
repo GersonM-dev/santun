@@ -8,7 +8,9 @@
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Layanan Bantuan</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-                    Masyarakat dapat mendaftar berbagai layanan bantuan yang tersedia, mulai dari kesehatan jiwa, pendidikan, hingga bantuan sosial umum. Kami siap mendampingi dan membantu setiap kebutuhan dengan penuh kepedulian.
+                    Masyarakat dapat mendaftar berbagai layanan bantuan yang tersedia, mulai dari kesehatan jiwa,
+                    pendidikan, hingga bantuan sosial umum. Kami siap mendampingi dan membantu setiap kebutuhan dengan
+                    penuh kepedulian.
                 </p>
             </div>
             <!-- text - end -->
@@ -64,6 +66,32 @@
                     </div>
                 </a>
                 <!-- product - end -->
+            </div>
+
+
+            <div class="mt-8">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Nama</th>
+                            <th>Keluhan</th>
+                            <th>Jenis Bantuan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($bantuans as $b)
+                            <tr>
+                                <td>{{ $b->created_at->format('d M Y') }}</td>
+                                <td>{{ $b->nama }}</td>
+                                <td>{{ $b->keluhan }}</td>
+                                <td>{{ $b->jenisBantuan->name ?? '-' }}</td>
+                                <td>{{ $b->status }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
