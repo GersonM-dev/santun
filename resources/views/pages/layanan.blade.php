@@ -82,8 +82,8 @@
                     </thead>
                     <tbody>
                         @foreach ($bantuan as $b)
-                            <tr class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $b->created_at->format('d M Y') }}</td>
+                            <tr class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $b->created_at->format('d M Y') }}</td>
                                 <td scope="row">{{ $b->nama }}</td>
                                 <td scope="row">{{ $b->keluhan }}</td>
                                 <td scope="row">{{ $b->jenisBantuan->name ?? '-' }}</td>

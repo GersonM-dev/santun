@@ -1,7 +1,7 @@
 <header
     class="mb-8 mt-2 flex items-center justify-between py-2 md:mb-12 md:py-4 xl:mb-16 shadow-xl/30 p-6 rounded-xl bg-white">
     <!-- logo - start -->
-    <a href="/" class="inline-flex items-center gap-2.5 text-xl font-bold text-black md:text-2xl" aria-label="logo">
+    <a href="/" class="inline-flex items-center gap-2.5 text-lg font-bold text-black md:text-2xl" aria-label="logo">
         <img src="{{ asset('logo.PNG') }}" alt="Logo" class="h-auto w-12">
         <span class="text-blue-600">Relawan</span> <span class="text-red-600">ODGJ</span> <span class="text-blue-600">Baturraden</span>
     </a>
