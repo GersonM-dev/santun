@@ -5,10 +5,10 @@
     <!-- Hero Section -->
     <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row">
         <!-- content - start -->
-        <div class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
+        <div class="flex flex-col justify-center ms-12 sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
             <h1 class="mb-8 text-xl font-bold text-justify text-black sm:text-xl md:mb-12 md:text-3xl">
                 Mari bersama berbagi kebaikan, saling mendukung, dan memberi harapan baru lewat Relawan ODGJ Baturraden</h1>
-            <p class="mb-8 leading-relaxed ms-12 text-justify text-gray-500 md:mb-12 xl:text-md">
+            <p class="mb-8 leading-relaxed text-justify text-gray-500 md:mb-12 xl:text-md">
                 Dengan semangat kepedulian, Relawan ODGJ Baturraden berkomitmen untuk memberikan layanan sosial,
                 pendampingan, dan aksi nyata yang transparan serta berkelanjutan. Melalui SANTUN (Sistem Informasi Terpadu
                 untuk Relawan ODGJ Baturraden), kami hadir untuk memudahkan Anda dalam berkontribusi, berdonasi, maupun
