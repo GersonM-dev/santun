@@ -7,11 +7,10 @@
         <!-- content - start -->
         <div class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
             <h1 class="mb-8 text-3xl font-bold text-black sm:text-4xl md:mb-12 md:text-5xl">
-                Selangkah Lebih Dekat Menuju Kepedulian Nyata
+                Mari kita ciptakan ruang kebaikan, saling mendukung, dan memberi harapan baru bagi saudara kita yang membutuhkan melalui Relawan ODGJ Baturraden.
             </h1>
             <p class="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg">
-                Mari wujudkan transparansi dan kemudahan dalam aksi sosial melalui SANTUN - Sistem Informasi Terpadu untuk
-                Relawan ODGJ Baturaden.
+                Dengan semangat kepedulian, Relawan ODGJ Baturraden berkomitmen untuk memberikan layanan sosial, pendampingan, dan aksi nyata yang transparan serta berkelanjutan. Melalui SANTUN (Sistem Informasi Terpadu untuk Relawan ODGJ Baturraden), kami hadir untuk memudahkan Anda dalam berkontribusi, berdonasi, maupun mendaftar layanan sosial secara cepat, transparan, dan terpercaya.
             </p>
             <!-- <div class="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
                 <a href="#"
