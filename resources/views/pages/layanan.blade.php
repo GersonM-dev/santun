@@ -8,8 +8,7 @@
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Layanan Bantuan</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-                    Kami menyediakan berbagai layanan bantuan sosial, mulai dari donasi, pendidikan, kesehatan, hingga
-                    dukungan khusus untuk ODGJ dan masyarakat yang membutuhkan.
+                    Masyarakat dapat mendaftar berbagai layanan bantuan yang tersedia, mulai dari kesehatan jiwa, pendidikan, hingga bantuan sosial umum. Kami siap mendampingi dan membantu setiap kebutuhan dengan penuh kepedulian.
                 </p>
             </div>
             <!-- text - end -->
