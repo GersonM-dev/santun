@@ -81,7 +81,6 @@
                                     <th scope="col" class="px-6 py-3">Tanggal</th>
                                     <th scope="col" class="px-6 py-3">Nama</th>
                                     <th scope="col" class="px-6 py-3">Keluhan</th>
-                                    <th scope="col" class="px-6 py-3">Jenis Bantuan</th>
                                     <th scope="col" class="px-6 py-3">Status</th>
                                 </tr>
                             </thead>
