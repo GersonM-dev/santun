@@ -74,8 +74,7 @@
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Layanan Bantuan</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-                    Kami menyediakan berbagai layanan bantuan sosial, mulai dari donasi, pendidikan, kesehatan, hingga
-                    dukungan khusus untuk ODGJ dan masyarakat yang membutuhkan.
+                    Masyarakat dapat mendaftar berbagai layanan bantuan yang tersedia, mulai dari kesehatan jiwa, pendidikan, hingga bantuan sosial umum. Kami siap mendampingi dan membantu setiap kebutuhan dengan penuh kepedulian.
                 </p>
             </div>
             <!-- text - end -->
@@ -143,8 +142,7 @@
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Penggalangan Donasi</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-                    Donasi Anda akan menjadi harapan baru bagi banyak orang. Mari bersama-sama berkontribusi untuk kebaikan
-                    dan membantu sesama melalui program penggalangan donasi kami.
+                    Mari berkontribusi untuk kebaikan bersama melalui penggalangan donasi. Dukungan Anda, baik berupa uang, barang, maupun tenaga, akan sangat berarti dalam membantu ODGJ serta masyarakat yang membutuhkan. Setiap donasi yang terkumpul akan disalurkan secara transparan dan tepat sasaran, agar kebaikan bisa dirasakan langsung oleh mereka yang membutuhkan.
                 </p>
             </div>
             <!-- text - end -->
