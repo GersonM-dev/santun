@@ -68,30 +68,36 @@
                 <!-- product - end -->
             </div>
 
+            <div class="mb-5 md:mb-8">
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Riwayat Layanan Bantuan</h2>
+            </div>
 
-            <div class="relative overflow-x-auto mt-8">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">Tanggal</th>
-                            <th scope="col" class="px-6 py-3">Nama</th>
-                            <th scope="col" class="px-6 py-3">Keluhan</th>
-                            <th scope="col" class="px-6 py-3">Jenis Bantuan</th>
-                            <th scope="col" class="px-6 py-3">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($bantuan as $b)
-                            <tr class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $b->created_at->format('d M Y') }}</td>
-                                <td scope="row">{{ $b->nama }}</td>
-                                <td scope="row">{{ $b->keluhan }}</td>
-                                <td scope="row">{{ $b->jenisBantuan->name ?? '-' }}</td>
-                                <td scope="row">{{ $b->status }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="mt-8">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Tanggal</th>
+                                    <th scope="col" class="px-6 py-3">Nama</th>
+                                    <th scope="col" class="px-6 py-3">Keluhan</th>
+                                    <th scope="col" class="px-6 py-3">Jenis Bantuan</th>
+                                    <th scope="col" class="px-6 py-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($bantuan as $b)
+                                    <tr class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $b->created_at->format('d M Y') }}</td>
+                                        <td scope="row">{{ $b->nama }}</td>
+                                        <td scope="row">{{ $b->jenisBantuan->name ?? '-' }}</td>
+                                        <td scope="row">{{ $b->status }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

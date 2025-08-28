@@ -83,8 +83,8 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('odgj.PNG') }}"
+                        loading="lazy" alt="Bantuan Khusus Kesehatan Jiwa"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -100,8 +100,8 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620241608701-94ef138c7ec9?auto=format&q=75&fit=crop&w=750"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('pendidikan.PNG') }}"
+                        loading="lazy" alt="Bantuan Pendidikan"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -117,8 +117,8 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('sosial.PNG') }}"
+                        loading="lazy" alt="Bantuan Sosial Umum"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
