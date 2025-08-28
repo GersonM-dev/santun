@@ -12,8 +12,15 @@
                 {!! str($kegiatan->konten)->sanitizeHtml() !!}
             </div>
             @if($kegiatan->youtube_video_link)
-                <div class="mt-6 aspect-w-16 aspect-h-9">
-                    <iframe src="{{ $kegiatan->youtube_video_link }}" frameborder="0" allowfullscreen class="w-full h-72 rounded-lg"></iframe>
+                <div class="mt-6">
+                    <iframe width="560" height="315"
+                        src="{{ $kegiatan->youtube_video_link }}"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                        class="w-full rounded-lg"></iframe>
                 </div>
             @endif
             @if($kegiatan->lokasi)

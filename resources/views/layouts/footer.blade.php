@@ -2,17 +2,18 @@
     <div class="flex flex-col items-center justify-between gap-4 border-t border-b py-6 md:flex-row">
         <!-- nav - start -->
         <nav class="flex flex-wrap justify-center gap-x-4 gap-y-2 md:justify-start md:gap-6">
-            <a href="#"
-                class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">About</a>
-            <a href="#"
-                class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Investor
-                Relations</a>
-            <a href="#"
-                class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Jobs</a>
-            <a href="#"
-                class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Press</a>
-            <a href="#"
-                class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Blog</a>
+            <a href="{{ route('home') }}"
+                class="text-lg font-semibold {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
+            <a href="{{ route('kegiatan') }}"
+                class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan
+                Sosial</a>
+            <a href="{{ route('layanan') }}"
+                class="text-lg font-semibold {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Pendaftaran Layanan</a>
+            <a href="{{ route('donasi') }}"
+                class="text-lg font-semibold {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Penggalangan Donasi</a>
+            <a href="{{ route('about') }}"
+                class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Tentang
+                Kami</a>
         </nav>
         <!-- nav - end -->
 
