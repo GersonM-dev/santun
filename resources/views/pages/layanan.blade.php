@@ -15,7 +15,7 @@
             </div>
             <!-- text - end -->
 
-            <div class="grid gap-6 sm:grid-cols-3 mb-5 md:mb-8">
+            <div class="grid gap-6 sm:grid-cols-3 mb-5 md:mb-12">
                 <!-- product - start -->
                 <a href="{{ route('formlayanan', 'kesehatan-jiwa') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
