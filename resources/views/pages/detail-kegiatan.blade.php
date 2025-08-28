@@ -13,14 +13,21 @@
             </div>
             @if($kegiatan->youtube_video_link)
                 <div class="mt-6">
-                    <iframe width="560" height="315"
-                        src="{{ $kegiatan->youtube_video_link }}"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
-                        class="w-full rounded-lg"></iframe>
+                    @php
+                        // Extract the YouTube video ID from the link
+                        preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&]+)/', $kegiatan->youtube_video_link, $matches);
+                        $videoId = $matches[1] ?? null;
+                    @endphp
+                    @if($videoId)
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/{{ $videoId }}"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            class="w-full rounded-lg"></iframe>
+                    @endif
                 </div>
             @endif
             @if($kegiatan->lokasi)
