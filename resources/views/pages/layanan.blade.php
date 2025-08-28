@@ -19,8 +19,8 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan', 'kesehatan-jiwa') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('odgj.PNG') }}"
+                        loading="lazy" alt="Bantuan Khusus Kesehatan Jiwa"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -36,8 +36,8 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan', 'pendidikan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620241608701-94ef138c7ec9?auto=format&q=75&fit=crop&w=750"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('pendidikan.PNG') }}"
+                        loading="lazy" alt="Bantuan Pendidikan"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -53,8 +53,8 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan', 'sosial-umum') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('sosial.PNG') }}"
+                        loading="lazy" alt="Bantuan Sosial Umum"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -69,25 +69,25 @@
             </div>
 
 
-            <div class="mt-8">
-                <table class="table-auto">
-                    <thead>
+            <div class="relative overflow-x-auto mt-8">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th>Tanggal</th>
-                            <th>Nama</th>
-                            <th>Keluhan</th>
-                            <th>Jenis Bantuan</th>
-                            <th>Status</th>
+                            <th scope="col" class="px-6 py-3">Tanggal</th>
+                            <th scope="col" class="px-6 py-3">Nama</th>
+                            <th scope="col" class="px-6 py-3">Keluhan</th>
+                            <th scope="col" class="px-6 py-3">Jenis Bantuan</th>
+                            <th scope="col" class="px-6 py-3">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($bantuan as $b)
-                            <tr>
-                                <td>{{ $b->created_at->format('d M Y') }}</td>
-                                <td>{{ $b->nama }}</td>
-                                <td>{{ $b->keluhan }}</td>
-                                <td>{{ $b->jenisBantuan->name ?? '-' }}</td>
-                                <td>{{ $b->status }}</td>
+                            <tr class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $b->created_at->format('d M Y') }}</td>
+                                <td scope="row">{{ $b->nama }}</td>
+                                <td scope="row">{{ $b->keluhan }}</td>
+                                <td scope="row">{{ $b->jenisBantuan->name ?? '-' }}</td>
+                                <td scope="row">{{ $b->status }}</td>
                             </tr>
                         @endforeach
                     </tbody>
