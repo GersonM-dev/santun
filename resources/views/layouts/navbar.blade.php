@@ -1,9 +1,9 @@
 <header
     class="mb-8 mt-2 flex items-center justify-between py-2 md:mb-12 md:py-4 xl:mb-16 shadow-xl/30 p-6 rounded-xl bg-white">
     <!-- logo - start -->
-    <a href="/" class="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl" aria-label="logo">
-        <img src="{{ asset('logo.PNG') }}" alt="Logo" class="h-auto w-6">
-        Santun
+    <a href="/" class="inline-flex items-center gap-2.5 text-xl font-bold text-black md:text-2xl" aria-label="logo">
+        <img src="{{ asset('logo.PNG') }}" alt="Logo" class="h-auto w-12">
+        Relawan ODGJ Baturraden
     </a>
     <!-- logo - end -->
 
