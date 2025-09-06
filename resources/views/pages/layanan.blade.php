@@ -68,7 +68,7 @@
                 <!-- product - end -->
             </div>
 
-            <div class="mb-5 md:mb-8">
+            <!-- <div class="mb-5 md:mb-8">
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Riwayat Layanan Bantuan</h2>
             </div>
 
@@ -97,7 +97,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 @endsection

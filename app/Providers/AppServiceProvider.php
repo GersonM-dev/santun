@@ -3,6 +3,8 @@
 namespace App\Providers;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Illuminate\Support\ServiceProvider;
+use Filament\Http\Responses\Auth\Contracts\LogoutResponse as LogoutResponseContract; 
+use App\Http\Responses\LogoutResponse;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
             LoginResponse::class,
             \App\Http\Responses\LoginResponse::class
         );
+
+        $this->app->bind(LogoutResponseContract::class, LogoutResponse::class);
     }
 
     /**

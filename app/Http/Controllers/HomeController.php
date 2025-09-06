@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
 {
@@ -60,16 +61,23 @@ class HomeController extends Controller
 
     public function submitLayanan(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'date_birth' => 'required|date',
-            'id_jenisBantuan' => 'required|exists:jenis_bantuans,id',
-            'kontak' => 'required|string|max:100',
-            'keluhan' => 'required|string|max:1000',
-            'alamat' => 'required|string|max:1000',
-            'status' => 'required|string',
-            'tanggal' => 'required|date',
-        ]);
+        try {
+            $request->validate([
+                'nama' => 'required|string|max:255',
+                'date_birth' => 'required|date',
+                'id_jenisBantuan' => 'required|exists:jenis_bantuans,id',
+                'kontak' => 'required|string|max:100',
+                'keluhan' => 'required|string|max:1000',
+                'alamat' => 'required|string|max:1000',
+                'status' => 'required|string',
+                'tanggal' => 'required|date',
+            ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator) // send validation errors
+                ->withInput() // keep old input values
+                ->with('warning', 'Silakan periksa kembali data yang Anda isi!');
+        }
 
         // Store the bantuan request
         $bantuan = \App\Models\Bantuan::create([
