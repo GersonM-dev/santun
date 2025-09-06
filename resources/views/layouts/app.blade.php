@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
+    <div class="bg-gradient-to-r from-blue-200 to-cyan-200 pb-6 sm:pb-8 lg:pb-12">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             @include('layouts.navbar')
             <main data-aos="fade-up" data-aos-duration="900">
