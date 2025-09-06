@@ -3,7 +3,9 @@
     <!-- logo - start -->
     <a href="/" class="inline-flex items-center gap-2.5 text-lg font-bold text-black md:text-2xl" aria-label="logo">
         <img src="{{ asset('logo.PNG') }}" alt="Logo" class="h-auto w-12">
-        <span class="text-blue-600">Relawan</span> <span class="text-red-600">ODGJ</span> <span class="text-blue-600">Baturraden</span>
+        <span class="text-blue-600 hidden md:inline">Relawan</span>
+        <span class="text-red-600 hidden md:inline">ODGJ</span>
+        <span class="text-blue-600 hidden md:inline">Baturraden</span>
     </a>
     <!-- logo - end -->
 
