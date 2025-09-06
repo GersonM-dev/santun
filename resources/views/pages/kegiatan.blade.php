@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- Kegiatan Sosial -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <div class="mb-4py-6 sm:py-8 lg:py-12">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <div class="mb-6 flex items-end justify-between gap-4">
                 <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl text-center w-full">Kegiatan Sosial</h2>

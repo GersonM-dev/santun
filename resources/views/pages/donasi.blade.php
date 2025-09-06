@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <!-- Penggalangan Donasi -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12 border-t border-gray-400 mt-6">
+    <div class="mb-4 py-6 sm:py-8 lg:py-12 border-t border-gray-400 mt-6">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-5 md:mb-8">

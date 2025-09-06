@@ -1,31 +1,37 @@
-<header
-    class="mb-8 mt-2 flex items-center justify-between py-2 md:mb-12 md:py-4 xl:mb-16 shadow-xl/30 p-6 rounded-xl bg-white">
+<header class="mb-8 flex items-center justify-between py-2 md:mb-12 md:py-4 xl:mb-16 shadow-xl/30 p-6 rounded-b-xl 
+           bg-white/30 backdrop-blur-md">
     <!-- logo - start -->
     <a href="/" class="inline-flex items-center gap-2.5 text-lg font-bold text-black md:text-2xl" aria-label="logo">
+        <!-- Logo always visible -->
         <img src="{{ asset('logo.PNG') }}" alt="Logo" class="h-auto w-12">
-        <span class="text-blue-600 hidden md:inline">Relawan</span>
-        <span class="text-red-600 hidden md:inline">ODGJ</span>
-        <span class="text-blue-600 hidden md:inline">Baturraden</span>
+
+        <!-- Text visible only on md+ -->
+        <span class="hidden md:inline text-blue-600">Relawan</span>
+        <span class="hidden md:inline text-red-600">ODGJ</span>
+        <span class="hidden md:inline text-blue-600">Baturraden</span>
     </a>
+
     <!-- logo - end -->
 
     <!-- nav - start -->
-    <nav class="hidden gap-12 lg:flex items-center">
+    <nav class="hidden gap-6 lg:flex items-center">
         <a href="{{ route('home') }}"
-            class="text-lg font-semibold {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
+            class="text-lg  {{ request()->routeIs('home') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Home</a>
         <a href="{{ route('kegiatan') }}"
-            class="text-lg font-semibold {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan
+            class="text-lg  {{ request()->routeIs('kegiatan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Kegiatan
             Sosial</a>
         <a href="{{ route('layanan') }}"
-            class="text-lg font-semibold {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Pendaftaran Layanan</a>
+            class="text-lg  {{ request()->routeIs('layanan') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Pendaftaran
+            Layanan</a>
         <a href="{{ route('donasi') }}"
-            class="text-lg font-semibold {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Penggalangan Donasi</a>
+            class="text-lg  {{ request()->routeIs('donasi') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Penggalangan
+            Donasi</a>
         <a href="{{ route('about') }}"
-            class="text-lg font-semibold {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Tentang
+            class="text-lg  {{ request()->routeIs('about') ? 'text-sky-500' : 'text-gray-600 hover:text-sky-500 active:text-sky-700' }}">Tentang
             Kami</a>
         @guest
             <a href="{{ route('login') }}"
-                class="text-lg font-semibold text-gray-600 hover:text-sky-500 active:text-sky-700">Login</a>
+                class="text-lg bg-amber-500 p-2 px-4 rounded-lg text-white hover:bg-amber-400 active:bg-amber-700">Login</a>
         @else
             @auth
                 <a href="{{ route('profile.show') }}" class="text-lg font-semibold text-sky-500 hover:text-sky-700 mr-2">My
@@ -60,8 +66,9 @@
 </header>
 
 <!-- mobile menu - start -->
-<nav id="mobile-nav" data-aos="fade-left" data-aos-duration="800"
-    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white p-8 text-center text-xl font-semibold text-gray-700 transition-all duration-300 lg:hidden hidden">
+<nav id="mobile-nav" data-aos="fade-left" data-aos-duration="800" class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 
+           bg-white/30 backdrop-blur-md p-8 text-center text-xl text-gray-700 
+           transition-all duration-300 lg:hidden hidden">
     <a href="{{ route('home') }}"
         class="{{ request()->routeIs('home') ? 'text-sky-500' : 'hover:text-sky-500' }}">Home</a>
     <a href="{{ route('kegiatan') }}"

@@ -3,16 +3,15 @@
 @section('content')
 
     <!-- Hero Section -->
-    <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row">
+    <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row p-4 rounded-lg">
         <!-- content - start -->
         <div class="flex flex-col justify-center ms-12 sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
-            <h1 class="mb-4 text-xl font-bold text-justify text-black sm:text-xl md:mb-12 md:text-3xl">
-                Mari bersama berbagi kebaikan, saling mendukung, dan memberi harapan baru lewat Relawan ODGJ Baturraden</h1>
-            <p class="mb-8 leading-relaxed text-justify text-gray-500 md:mb-12 xl:text-md">
-                Dengan semangat kepedulian, Relawan ODGJ Baturraden berkomitmen untuk memberikan layanan sosial,
-                pendampingan, dan aksi nyata yang transparan serta berkelanjutan. Melalui SANTUN (Sistem Informasi Terpadu
-                untuk Relawan ODGJ Baturraden), kami hadir untuk memudahkan Anda dalam berkontribusi, berdonasi, maupun
-                mendaftar layanan sosial secara cepat, transparan, dan terpercaya.
+            <h1 class="mb-4 text-xl font-bold text-left text-gray-700 leading-tight sm:text-2xl md:mb-8 md:text-5xl">
+                Selangkah Lebih Dekat <br> Menuju Kepedulian Nyata
+            </h1>
+            <p class="hidden md:block mb-8 leading-relaxed text-left text-gray-500 md:mb-12 xl:text-md max-w-lg">
+                Mari wujudkan transparansi dan kemudahan dalam aksi sosial melalui SANTUN - Sistem Informasi Terpadu untuk
+                Relawan ODGJ Baturaden.
             </p>
         </div>
         <!-- content - end -->
@@ -34,8 +33,85 @@
         <!-- carousel image - end -->
     </section>
 
+    <!-- Tentang Kami -->
+    <section class="py-8 sm:py-12 lg:py-16">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+            <div class="grid items-center gap-8 lg:grid-cols-2">
+                <!-- Kiri: Gambar/Logo -->
+                <div class="flex justify-center">
+                    <img src="{{ asset('logo.PNG') }}" alt="Relawan ODGJ Baturraden"
+                        class="w-72 h-72 object-contain sm:w-80 sm:h-80" loading="lazy" />
+                </div>
+
+                <!-- Kanan: Teks & Fitur -->
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Tentang Kami</h2>
+
+                    <p class="mt-4 max-w-2xl text-gray-600 leading-relaxed">
+                        Relawan ODGJ Baturraden adalah organisasi sosial yang bergerak di bidang kesehatan jiwa, pendidikan,
+                        dan sosial kemasyarakatan, berlokasi di Desa Kemutug Kidul, Banyumas. Kami mendampingi pasien ODGJ,
+                        membantu lansia dan korban kecelakaan, serta mendukung pendidikan anak-anak kurang mampu.
+                    </p>
+                    <p class="mt-3 max-w-2xl text-gray-600 leading-relaxed">
+                        Sejak tahun 2009, kami hadir untuk menjembatani empati dan aksi nyata—mengajak masyarakat
+                        bersama-sama merawat, menyembuhkan, dan memberdayakan mereka yang terlupakan.
+                    </p>
+
+                    <!-- Fitur -->
+                    <div class="mt-6 space-y-4">
+                        <!-- Item 1 -->
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 ring-1 ring-blue-100">
+                                <!-- Icon form/layanan -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M6 2a2 2 0 0 0-2 2v16l4-2 4 2 4-2 4 2V4a2 2 0 0 0-2-2H6z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Pendaftaran Layanan Bantuan</div>
+                                <div class="text-sm text-gray-500">Pendaftaran layanan bantuan kesehatan jiwa (ODGJ),
+                                    pendidikan dan sosial.</div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50 ring-1 ring-cyan-100">
+                                <!-- Icon donasi -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M12 21s-8-4.438-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.562-8 11-8 11z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Penggalangan Donasi</div>
+                                <div class="text-sm text-gray-500">Donasi Materi dan Non-Materi.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="mt-8 border-t border-blue-200 pt-4">
+                        <a href="{{ route('about') }}"
+                            class="inline-flex items-center gap-2 font-medium text-blue-700 hover:text-blue-800">
+                            Pelajari lebih lanjut tentang perjuangan kami
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Kegiatan Sosial -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12 mt-6">
+    <div class="py-6 sm:py-8 lg:py-12 mt-6 rounded-lg">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <div class="mb-6 flex items-end justify-between gap-4">
                 <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Kegiatan Sosial</h2>
@@ -67,14 +143,16 @@
     </div>
 
     <!-- Layanan Bantuan -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12 border-t border-gray-400 mt-6">
+    <div class="py-6 sm:py-8 lg:py-12 border-t border-gray-400 mt-6 rounded-lg">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-5 md:mb-8">
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Layanan Bantuan</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-                    Masyarakat dapat mendaftar berbagai layanan bantuan yang tersedia, mulai dari kesehatan jiwa, pendidikan, hingga bantuan sosial umum. Kami siap mendampingi dan membantu setiap kebutuhan dengan penuh kepedulian.
+                    Masyarakat dapat mendaftar berbagai layanan bantuan yang tersedia, mulai dari kesehatan jiwa,
+                    pendidikan, hingga bantuan sosial umum. Kami siap mendampingi dan membantu setiap kebutuhan dengan penuh
+                    kepedulian.
                 </p>
             </div>
             <!-- text - end -->
@@ -83,8 +161,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('odgj.PNG') }}"
-                        loading="lazy" alt="Bantuan Khusus Kesehatan Jiwa"
+                    <img src="{{ asset('odgj.PNG') }}" loading="lazy" alt="Bantuan Khusus Kesehatan Jiwa"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -100,8 +177,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('pendidikan.PNG') }}"
-                        loading="lazy" alt="Bantuan Pendidikan"
+                    <img src="{{ asset('pendidikan.PNG') }}" loading="lazy" alt="Bantuan Pendidikan"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -117,8 +193,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formlayanan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('sosial.PNG') }}"
-                        loading="lazy" alt="Bantuan Sosial Umum"
+                    <img src="{{ asset('sosial.PNG') }}" loading="lazy" alt="Bantuan Sosial Umum"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -135,14 +210,17 @@
     </div>
 
     <!-- Penggalangan Donasi -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12 border-t border-gray-400 mt-6">
+    <div class=" py-6 sm:py-8 lg:py-12 border-t border-gray-400 mt-6 rounded-lg">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-5 md:mb-8">
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Penggalangan Donasi</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-                    Mari berkontribusi untuk kebaikan bersama melalui penggalangan donasi. Dukungan Anda, baik berupa uang, barang, maupun tenaga, akan sangat berarti dalam membantu ODGJ serta masyarakat yang membutuhkan. Setiap donasi yang terkumpul akan disalurkan secara transparan dan tepat sasaran, agar kebaikan bisa dirasakan langsung oleh mereka yang membutuhkan.
+                    Mari berkontribusi untuk kebaikan bersama melalui penggalangan donasi. Dukungan Anda, baik berupa uang,
+                    barang, maupun tenaga, akan sangat berarti dalam membantu ODGJ serta masyarakat yang membutuhkan. Setiap
+                    donasi yang terkumpul akan disalurkan secara transparan dan tepat sasaran, agar kebaikan bisa dirasakan
+                    langsung oleh mereka yang membutuhkan.
                 </p>
             </div>
             <!-- text - end -->
@@ -151,8 +229,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formdonasi') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('donasi materi.PNG') }}"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('donasi materi.PNG') }}" loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -168,8 +245,7 @@
                 <!-- product - start -->
                 <a href="{{ route('formdonasi') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                    <img src="{{ asset('donasi non-materi.PNG') }}"
-                        loading="lazy" alt="Photo by Fakurian Design"
+                    <img src="{{ asset('donasi non-materi.PNG') }}" loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                     <div
@@ -184,52 +260,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Contact Us -->
-    <!-- <div class="bg-white py-12 px-4 md:px-8 border-t border-gray-400 mt-6">
-                <div class="mx-auto max-w-2xl rounded-2xl shadow-xl/30 bg-white p-8 md:p-12">
-                    <div class="mb-8 text-center">
-                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Contact Us</h2>
-                        <p class="text-gray-500 text-base md:text-lg">
-                            Ada pertanyaan, saran, atau ingin berkolaborasi? Silakan isi form berikut atau hubungi kami secara
-                            langsung.
-                        </p>
-                    </div>
-                    <form action="#" method="POST" class="space-y-6">
-                        @csrf
-                        <div>
-                            <label for="name" class="block text-gray-700 mb-1 font-medium">Nama</label>
-                            <input type="text" id="name" name="name" required
-                                class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition" />
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-1 font-medium">Email</label>
-                            <input type="email" id="email" name="email" required
-                                class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition" />
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 mb-1 font-medium">Pesan</label>
-                            <textarea id="message" name="message" rows="5" required
-                                class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition resize-none"></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full rounded-xl bg-indigo-500 py-3 text-lg font-semibold text-white shadow transition hover:bg-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 active:bg-indigo-700">
-                            Kirim Pesan
-                        </button>
-                    </form>
-                    <div class="mt-10 text-center text-gray-500 text-sm">
-                        <div>
-                            <span class="font-medium text-gray-700">Email:</span> info@namadomainanda.com
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">WhatsApp:</span> 0812-xxxx-xxxx
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Alamat:</span> Jl. Sosial No. 10, Jakarta
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
     <!-- Carousel Script -->
     <script>
