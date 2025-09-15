@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DonasiResource\RelationManagers;
 use App\Filament\Resources\DonasiResource\RelationManagers\ItemRelationManager;
 use App\Filament\Resources\DonasiResource\RelationManagers\MoneyRelationManager;
+use Filament\Tables\Actions\Action;
 
 class DonasiResource extends Resource
 {
@@ -104,6 +105,13 @@ class DonasiResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->headerActions([
+            Action::make('download_rekap_pdf')
+                ->label('Download Rekap PDF')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->url(fn () => route('donasi.rekap.pdf'))
+                ->openUrlInNewTab(),
+        ])
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nama Donatur')->searchable(),
                 Tables\Columns\TextColumn::make('phone')->label('Nomor Telepon'),

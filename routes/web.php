@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DonasiPdfController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/kegiatan', [HomeController::class, 'kegiatan'])->name('kegiatan');
@@ -18,6 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/formdonasi/{slug?}', [HomeController::class, 'formdonasi'])->whereIn('slug', ['materi', 'non-materi'])->name('formdonasi');
     Route::post('/formdonasi', [HomeController::class, 'submitDonasi'])->name('formdonasi.submit');
 });
+
+Route::middleware(['web','auth']) // sesuaikan middleware admin/filament Anda
+    ->get('/admin/donasi/rekap-pdf', [DonasiPdfController::class, 'rekap'])
+    ->name('donasi.rekap.pdf');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [HomeController::class, 'showprofile'])->name('profile.show');
