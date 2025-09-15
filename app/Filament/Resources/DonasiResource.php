@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DonasiResource\RelationManagers;
 use App\Filament\Resources\DonasiResource\RelationManagers\ItemRelationManager;
 use App\Filament\Resources\DonasiResource\RelationManagers\MoneyRelationManager;
-use Filament\Tables\Actions\Action;
 
 class DonasiResource extends Resource
 {
@@ -145,11 +144,6 @@ class DonasiResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-                Action::make('download_pdf')
-        ->label('Download PDF')
-        ->icon('heroicon-o-arrow-down-tray')
-        ->url(fn ($record) => route('donasi.pdf', ['record' => $record]))
-        ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
