@@ -74,7 +74,7 @@
     <table class="header-table">
         <tr>
             <td class="logo">
-                <img src="file://{{ public_path('logopdf.jpg') }}" alt="Logo" style="width: 100px;">
+                <img src="file://{{ public_path('logo.PNG') }}" alt="Logo" style="width: 100px;">
             </td>
             <td class="instansi-info">
                 <strong>RELAWAN ODGJ BATURRADEN </strong><br>
