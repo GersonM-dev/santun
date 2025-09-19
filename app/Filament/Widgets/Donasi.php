@@ -11,6 +11,7 @@ use Filament\Widgets\TableWidget as BaseWidget;
 class Donasi extends BaseWidget
 {
     protected static ?string $heading = 'Pendaftaran Donasi Terbaru';
+    protected static ?int $sort = 3;
     public function table(Table $table): Table
     {
         return $table

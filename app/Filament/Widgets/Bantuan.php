@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 class Bantuan extends BaseWidget
 {
     protected static ?string $heading = 'Pendaftaran Layanan Terbaru';
+    protected static ?int $sort = 4;
     public function table(Table $table): Table
     {
         return $table
