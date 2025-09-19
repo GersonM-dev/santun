@@ -54,6 +54,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -61,6 +62,13 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentShieldPlugin::make(),
                 GlobalSearchModalPlugin::make(),
+                \Hasnayeen\Themes\ThemesPlugin::make()
+                ->registerTheme(
+                        [
+                            \Hasnayeen\Themes\Themes\Sunset::class,
+                        ],
+                        override: true,
+                    ),
                 BreezyCore::make()
                     ->myProfile(
                         shouldRegisterUserMenu: true,
