@@ -152,7 +152,16 @@ class DonasiResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('date')
+                    ->form([
+                        Forms\Components\DatePicker::make('date_from')->label('Dari Tanggal'),
+                        Forms\Components\DatePicker::make('date_until')->label('Sampai Tanggal'),
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        return $query
+                            ->when($data['date_from'], fn ($q) => $q->whereDate('date', '>=', $data['date_from']))
+                            ->when($data['date_until'], fn ($q) => $q->whereDate('date', '<=', $data['date_until']));
+                    }),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
