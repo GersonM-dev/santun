@@ -10,6 +10,16 @@ use Filament\Widgets\ChartWidget;
 class DonasiChart extends ChartWidget
 {
     protected static ?string $heading = 'Grafik Penggalangan Donasi';
+    protected static ?int $sort = 2;
+
+    public function getColumnSpan(): int | string | array
+    {
+        return [
+            'sm' => 2,
+            'md' => 2,
+            'lg' => 3,
+        ];
+    }
 
     public function getData(): array
     {
