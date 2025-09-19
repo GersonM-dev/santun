@@ -118,6 +118,12 @@ class DonasiResource extends Resource
                 Tables\Columns\TextColumn::make('date')->label('Tanggal Donasi')->date(),
                 Tables\Columns\BadgeColumn::make('type')->label('Tipe Donasi'),
                 Tables\Columns\TextColumn::make('tujuanDonasi.name')->label('Tujuan Donasi'),
+                Tables\Columns\SelectColumn::make('status')
+                    ->label('Status')
+                    ->options([
+                        'Belum Diterima' => 'Belum Diterima',
+                        'Diterima' => 'Diterima',
+                    ]),
 
                 Tables\Columns\IconColumn::make('is_anonymous')
                     ->label('Anonim')
