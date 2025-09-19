@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Filament\Widgets;
+use App\Models\Money;
+use Illuminate\Support\Carbon;
+
 
 use Filament\Widgets\ChartWidget;
 
@@ -8,18 +11,33 @@ class DonasiChart extends ChartWidget
 {
     protected static ?string $heading = 'Grafik Penggalangan Donasi';
 
-    protected function getData(): array
+    public function getData(): array
     {
+        $year = now()->year;
+        $labels = [];
+        $data = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $labels[] = Carbon::create()->month($month)->shortMonthName;
+            $sum = Money::whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)
+                ->sum('total');
+            $data[] = (int) $sum;
+        }
+
         return [
             'datasets' => [
                 [
-                    'label' => 'Blog posts created',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
+                    'label' => 'Total Donasi (Rp)',
+                    'data' => $data,
+                    'backgroundColor' => '#3b82f6',
+                    'borderColor' => '#3b82f6',
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'labels' => $labels,
         ];
     }
+
 
     protected function getType(): string
     {

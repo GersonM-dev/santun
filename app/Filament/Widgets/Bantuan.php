@@ -15,7 +15,7 @@ class Bantuan extends BaseWidget
     {
         return $table
             ->query(
-                BantuanModel::query()
+                BantuanModel::query()->latest()->limit(5)
             )
             ->columns([
                 TextColumn::make('nama')->label('Nama'),

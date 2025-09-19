@@ -1,24 +1,33 @@
 <?php
 
 namespace App\Filament\Widgets;
+use App\Models\Bantuan;
+use App\Models\Money;
+use App\Models\User;
+
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class StatsOverview extends BaseWidget
 {
-    protected function getStats(): array
-    {
-        return [
-            Stat::make('Pendaftaran Layanan', '10 orang')
-                ->description('Meningkat 5% dari bulan lalu')
-                ->descriptionIcon('heroicon-m-arrow-trending-up'),
-            Stat::make('Total Donasi', 'Rp 2.000.000')
-                ->description('meningkat 7% dari bulan lalu')
-                ->descriptionIcon('heroicon-m-arrow-trending-up'),
-            Stat::make('Jumlah User', '20 orang')
-                ->description('3% increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-up'),
-        ];
-    }
+protected function getStats(): array
+{
+    $totalPendaftaran = Bantuan::count();
+    $totalDonasi = Money::sum('total');
+    $totalUser = User::count();
+
+    return [
+        Stat::make('Jumlah Pendaftaran', $totalPendaftaran . ' pendaftar')
+            ->description('Dihitung dari seluruh entri Bantuan')
+            ->descriptionIcon('heroicon-m-arrow-trending-up'),
+        Stat::make('Total Donasi', 'Rp ' . number_format($totalDonasi, 0, ',', '.'))
+            ->description('Total donasi uang yang diterima')
+            ->descriptionIcon('heroicon-m-arrow-trending-up'),
+        Stat::make('Jumlah User', $totalUser . ' orang')
+            ->description('Total pengguna terdaftar')
+            ->descriptionIcon('heroicon-m-arrow-trending-up'),
+    ];
+}
+
 }
