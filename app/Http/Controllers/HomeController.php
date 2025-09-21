@@ -340,23 +340,28 @@ class HomeController extends Controller
         }
     }
 
+
+    public function infoLayanan(?string $slug = null)
+    {
+        // slug sama seperti yang dipakai di formlayanan
+        $layananSlug = $slug;
+        // Ambil 5 gambar kegiatan terbaru sebagai sumber carousel
+        $kegiatanImages = Kegiatan::orderBy('date', 'desc')->take(5)->get(['gambar', 'name']);
+        return view('pages.info-layanan', compact('layananSlug', 'kegiatanImages'));
+    }
+
     public function infoDonasi(?string $slug = null)
     {
-        // Mode mengatur penjelasan yang ditampilkan
+        // Mode: materi / non-materi
         $mode = null;
         if ($slug === 'materi') {
             $mode = 'materi';
         } elseif ($slug === 'non-materi') {
             $mode = 'non-materi';
         }
-
-        return view('pages.info-donasi', compact('mode'));
-    }
-
-    public function infoLayanan(?string $slug = null)
-    {
-        $layananSlug = $slug; // slug dikirimkan ke view
-        return view('pages.info-layanan', compact('layananSlug'));
+        // Ambil gambar kegiatan untuk carousel
+        $kegiatanImages = Kegiatan::orderBy('date', 'desc')->take(5)->get(['gambar', 'name']);
+        return view('pages.info-donasi', compact('mode', 'kegiatanImages'));
     }
 
 

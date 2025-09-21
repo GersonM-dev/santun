@@ -29,12 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile', [HomeController::class, 'updateprofile'])->name('profile.update');
 });
 
-Route::get('/info-donasi/{slug?}', [HomeController::class, 'infoDonasi'])
-     ->whereIn('slug', ['materi', 'non-materi'])
-     ->name('info.donasi');
-Route::get('/info-layanan/{slug?}', [HomeController::class, 'infoLayanan'])
-     ->whereIn('slug', ['kesehatan-jiwa', 'pendidikan', 'sosial-umum'])
-     ->name('info.layanan');
+Route::get('/info-layanan/{slug?}', [HomeController::class, 'infoLayanan'])->name('info.layanan');
+Route::get('/info-donasi/{slug?}', [HomeController::class, 'infoDonasi'])->name('info.donasi');
+
 
 Route::redirect('/login', '/santun/login')->name('login');
 
