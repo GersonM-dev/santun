@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DonasiPdfController;
+use App\Http\Controllers\AboutController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/kegiatan', [HomeController::class, 'kegiatan'])->name('kegiatan');
@@ -40,3 +41,5 @@ Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect']
     ->name('socialite.redirect');
 Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])
     ->name('socialite.callback');
+
+    Route::get('/tentang-kami', [AboutController::class, 'show'])->name('about');
