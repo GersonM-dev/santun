@@ -340,5 +340,24 @@ class HomeController extends Controller
         }
     }
 
+    public function infoDonasi(?string $slug = null)
+    {
+        // Mode mengatur penjelasan yang ditampilkan
+        $mode = null;
+        if ($slug === 'materi') {
+            $mode = 'materi';
+        } elseif ($slug === 'non-materi') {
+            $mode = 'non-materi';
+        }
+
+        return view('pages.info-donasi', compact('mode'));
+    }
+
+    public function infoLayanan(?string $slug = null)
+    {
+        $layananSlug = $slug; // slug dikirimkan ke view
+        return view('pages.info-layanan', compact('layananSlug'));
+    }
+
 
 }

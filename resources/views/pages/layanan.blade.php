@@ -17,7 +17,7 @@
 
             <div class="grid gap-6 sm:grid-cols-3 mb-5 md:mb-12">
                 <!-- product - start -->
-                <a href="{{ route('formlayanan', 'kesehatan-jiwa') }}"
+                <a href="{{ route('info.layanan', 'kesehatan-jiwa') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('odgj.PNG') }}"
                         loading="lazy" alt="Bantuan Khusus Kesehatan Jiwa"
@@ -34,7 +34,7 @@
                 <!-- product - end -->
 
                 <!-- product - start -->
-                <a href="{{ route('formlayanan', 'pendidikan') }}"
+                <a href="{{ route('info.layanan', 'pendidikan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('pendidikan.PNG') }}"
                         loading="lazy" alt="Bantuan Pendidikan"
@@ -51,7 +51,7 @@
                 <!-- product - end -->
 
                 <!-- product - start -->
-                <a href="{{ route('formlayanan', 'sosial-umum') }}"
+                <a href="{{ route('info.layanan', 'sosial-umum') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('sosial.PNG') }}"
                         loading="lazy" alt="Bantuan Sosial Umum"
