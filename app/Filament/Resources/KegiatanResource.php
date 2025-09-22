@@ -76,8 +76,8 @@ class KegiatanResource extends Resource
             ])
             ->paginated(false)
             ->contentGrid([
-                'md' => 2,
-                'xl' => 3,
+                'md' => 4,
+                'xl' => 4,
             ])
             ->filters([
                 //
