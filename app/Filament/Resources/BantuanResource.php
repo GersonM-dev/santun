@@ -65,6 +65,7 @@ class BantuanResource extends Resource
                 TextColumn::make('jenisbantuan.name')->label('Jenis Layanan')->searchable(),
                 TextColumn::make('date_birth')->label('Tanggal Lahir')->date()->searchable(),
                 TextColumn::make('kontak')->label('Kontak')->searchable(),
+                TextColumn::make('created_at')->label('Tanggal Dibuat')->date()->searchable(),
                 SelectColumn::make('status')
                     ->options([
                         'proses' => 'Proses',
