@@ -10,12 +10,6 @@
         </div>
     @endif
 
-    @php
-        /** @var \App\Models\User $user */
-        $layananHistory = (isset($layananHistory) ? $layananHistory : (method_exists($user, 'layanans') ? $user->layanans : collect())) ?? collect();
-        $donasiHistory  = (isset($donasiHistory) ? $donasiHistory  : (method_exists($user, 'donasis')  ? $user->donasis  : collect())) ?? collect();
-    @endphp
-
     {{-- ====== TABEL RIWAYAT LAYANAN ====== --}}
     <div class="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow">
         <div class="flex items-center justify-between border-b px-4 py-3 sm:px-6">
@@ -63,7 +57,7 @@
                                     </span>
                                 </td>
                                 <td class="px-4 py-3">
-                                    <a href="{{ route('layanan.show', $item->id ?? 0) }}"
+                                    <a href="{{ route('layanan.show', $item->id) }}"
                                        class="text-sky-600 hover:text-sky-700">Detail</a>
                                 </td>
                             </tr>
@@ -131,7 +125,7 @@
                                     </span>
                                 </td>
                                 <td class="px-4 py-3">
-                                    <a href="{{ route('donasi.show', $item->id ?? 0) }}"
+                                    <a href="{{ route('donasi.show', $item->id) }}"
                                        class="text-sky-600 hover:text-sky-700">Detail</a>
                                 </td>
                             </tr>
@@ -142,7 +136,7 @@
         @endif
     </div>
 
-    {{-- ====== EDIT PROFILE (regular form below tables) ====== --}}
+    {{-- ====== EDIT PROFILE ====== --}}
     <div id="edit-profile" class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
         <h2 class="text-xl font-bold mb-4">Edit Profil</h2>
 

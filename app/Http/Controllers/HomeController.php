@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bantuan;
 use App\Models\Item;
 use App\Models\Jasa;
 use App\Models\Money;
@@ -244,17 +245,12 @@ class HomeController extends Controller
 
     public function showprofile()
     {
-        $user = Auth::user()->load([
-            'layanans' => fn($q) => $q->latest('created_at')
-                ->select(['id', 'user_id', 'created_at', 'status', 'jenis', 'category']),
-            'donasis' => fn($q) => $q->latest('created_at')
-                ->select(['id', 'user_id', 'created_at', 'status', 'jenis', 'mode', 'jumlah', 'barang']),
-        ]);
+        $user = Auth::user();
 
-        $layananHistory = $user->layanans;
-        $donasiHistory = $user->donasis;
+        $layananHistory = Bantuan::where('user_id', $user->id)->latest()->get();
+        $donasiHistory = Donasi::where('user_id', $user->id)->latest()->get();
 
-        return view('pages.profile', compact('user', 'layananHistory', 'donasiHistory'));
+        return view('profile.index', compact('user', 'layananHistory', 'donasiHistory'));
 
     }
 
