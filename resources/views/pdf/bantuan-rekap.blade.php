@@ -1,29 +1,99 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <style>
-        @page { margin: 22mm 18mm; }
-        body { font-family: "Times New Roman", Times, serif; font-size: 12px; color: #111; }
+        @page {
+            margin: 22mm 18mm;
+        }
 
-        .header-table { width: 100%; margin-bottom: 20px; border-bottom: 2px solid #000; }
-        .header-table td { vertical-align: top; border: none !important; font-size: 14px; }
-        .logo { width: 120px; }
-        .instansi-info { text-align: center; font-size: 11px; line-height: 1.4; }
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12px;
+            color: #111;
+        }
 
-        .title { text-align: center; margin: 10px 0 16px; font-weight: bold; text-decoration: underline; }
-        .meta { font-size: 11px; color: #444; margin-bottom: 10px; }
+        .header-table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+        }
 
-        table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        th, td { border: 1px solid #000; padding: 6px; text-align: center; vertical-align: top; }
-        thead th { background: #f0f0f0; }
+        .header-table td {
+            vertical-align: top;
+            border: none !important;
+            font-size: 14px;
+        }
 
-        .left { text-align: left; }
-        .right { text-align: right; }
-        .muted { color: #555; }
-        .footer { margin-top: 32px; text-align: right; font-size: 12px; }
+        .logo {
+            width: 120px;
+        }
+
+        .instansi-info {
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .title {
+            text-align: center;
+            margin: 10px 0 16px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .meta {
+            font-size: 11px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            table-layout: fixed;
+        }
+
+        td,
+        th {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+
+        thead th {
+            background: #f0f0f0;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .muted {
+            color: #555;
+        }
+
+        .footer {
+            margin-top: 32px;
+            text-align: right;
+            font-size: 12px;
+        }
+
+        td.left {
+            text-align: left;
+            vertical-align: top;
+            word-break: break-word;
+        }
     </style>
 </head>
+
 <body>
     {{-- Header --}}
     <table class="header-table">
@@ -59,7 +129,9 @@
                     <td class="right">{{ $r['count'] }}</td>
                 </tr>
             @empty
-                <tr><td colspan="2" class="center muted">Tidak ada data</td></tr>
+                <tr>
+                    <td colspan="2" class="center muted">Tidak ada data</td>
+                </tr>
             @endforelse
         </tbody>
     </table>
@@ -68,15 +140,16 @@
     <table>
         <thead>
             <tr>
-                <th style="width:25mm;">Tanggal</th>
-                <th style="width:35mm;">Nama</th>
-                <th style="width:35mm;">Jenis Layanan</th>
-                <th style="width:50mm;">Alamat</th>
-                <th style="width:50mm;">Keluhan</th>
-                <th style="width:30mm;">Kontak</th>
-                <th style="width:25mm;">Status</th>
+                <th style="width:18mm;">Tanggal</th>
+                <th style="width:28mm;">Nama</th>
+                <th style="width:30mm;">Jenis Layanan</th>
+                <th style="width:40mm;">Alamat</th>
+                <th style="width:40mm;">Keluhan</th>
+                <th style="width:28mm;">Kontak</th>
+                <th style="width:20mm;">Status</th>
             </tr>
         </thead>
+
         <tbody>
             @forelse($bantuans as $b)
                 <tr>
@@ -89,7 +162,9 @@
                     <td>{{ ucfirst($b->status ?? '-') }}</td>
                 </tr>
             @empty
-                <tr><td colspan="7" class="center muted">Tidak ada data layanan.</td></tr>
+                <tr>
+                    <td colspan="7" class="center muted">Tidak ada data layanan.</td>
+                </tr>
             @endforelse
         </tbody>
     </table>
@@ -108,4 +183,5 @@
         }
     </script>
 </body>
+
 </html>
