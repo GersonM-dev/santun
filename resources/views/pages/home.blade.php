@@ -159,7 +159,7 @@
 
             <div class="grid gap-6 sm:grid-cols-3">
                 <!-- product - start -->
-                <a href="{{ route('formlayanan') }}"
+                <a href="{{ route('info.layanan', 'kesehatan-jiwa') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('odgj.PNG') }}" loading="lazy" alt="Bantuan Khusus Kesehatan Jiwa"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
@@ -175,7 +175,7 @@
                 <!-- product - end -->
 
                 <!-- product - start -->
-                <a href="{{ route('formlayanan') }}"
+                <a href="{{ route('info.layanan', 'pendidikan') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('pendidikan.PNG') }}" loading="lazy" alt="Bantuan Pendidikan"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
@@ -191,7 +191,7 @@
                 <!-- product - end -->
 
                 <!-- product - start -->
-                <a href="{{ route('formlayanan') }}"
+                <a href="{{ route('info.layanan', 'sosial-umum') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('sosial.PNG') }}" loading="lazy" alt="Bantuan Sosial Umum"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
@@ -227,7 +227,7 @@
 
             <div class="grid gap-6 sm:grid-cols-2">
                 <!-- product - start -->
-                <a href="{{ route('formdonasi') }}"
+                <a href="{{ route('info.donasi', 'materi') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('donasi materi.PNG') }}" loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
@@ -243,7 +243,7 @@
                 <!-- product - end -->
 
                 <!-- product - start -->
-                <a href="{{ route('formdonasi') }}"
+                <a href="{{ route('info.donasi', 'non-materi') }}"
                     class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     <img src="{{ asset('donasi non-materi.PNG') }}" loading="lazy" alt="Photo by Fakurian Design"
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
