@@ -112,9 +112,6 @@
                 <div class="flex justify-center lg:justify-end">
                     @if($struktur)
                         <figure class="w-full max-w-xl">
-                            <figcaption class="mb-4 text-center lg:text-right text-2xl font-semibold text-gray-900">
-                                Struktur Organisasi
-                            </figcaption>
                             <div class="rounded-2xl bg-white p-4 shadow-lg ring-1 ring-gray-200">
                                 <img src="{{ $struktur }}" alt="Struktur Organisasi"
                                      class="h-[28rem] w-auto max-w-full object-contain" loading="lazy" />
