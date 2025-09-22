@@ -23,8 +23,8 @@
             <main data-aos="fade-up" data-aos-duration="900">
                 @yield('content')
             </main>
-            @include('layouts.footer')
         </div>
+        @include('layouts.footer')
     </div>
     <a href="https://wa.me/6285591305808" target="_blank"
         class="fixed bottom-4 right-4 z-50 bg-green-500 rounded-full shadow-lg p-3 hover:bg-green-600 transition"
