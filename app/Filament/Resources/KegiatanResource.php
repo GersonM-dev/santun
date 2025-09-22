@@ -15,6 +15,10 @@ use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Actions\ActionGroup;
 
 class KegiatanResource extends Resource
 {
@@ -52,44 +56,121 @@ class KegiatanResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            // ⚡️ Performance & defaults
+            ->defaultSort('date', 'desc')
+            ->paginated(12)
+            ->paginationPageOptions([12, 24, 48])
+            ->contentGrid([
+                'sm' => 1,
+                'md' => 2,
+                'xl' => 4,
+            ])
+
+            // 🧱 Columns (card style)
             ->columns([
                 Stack::make([
                     Tables\Columns\ImageColumn::make('gambar')
                         ->label('Gambar')
-                        ->alignCenter()
-                        ->width(300)
+                        ->disk('public') // sesuaikan jika bukan "public"
                         ->height(200)
-                        ->columnSpan('full')
-                        ->extraAttributes(['class' => 'rounded-lg shadow-lg']),
+                        ->extraImgAttributes(['loading' => 'lazy', 'alt' => 'Gambar kegiatan'])
+                        ->extraAttributes(['class' => 'rounded-lg shadow-lg w-full object-cover']),
+
                     Panel::make([
                         Tables\Columns\TextColumn::make('name')
                             ->label('Name')
-                            ->searchable()->weight(FontWeight::Bold)
-                            ->alignCenter()->size('lg'),
-                        Tables\Columns\TextColumn::make('konten')
-                            ->label('Konten')
-                            ->limit(length: 100)
-                            ->html()
+                            ->weight(FontWeight::Bold)
+                            ->limit(60)
+                            ->tooltip(fn($record) => $record->name)
+                            ->alignCenter()
+                            ->size('lg')
                             ->searchable(),
-                    ])->extraAttributes(['class' => 'mt-6']),
+
+                        Tables\Columns\TextColumn::make('date')
+                            ->label('Tanggal')
+                            ->date('d M Y')
+                            ->icon('heroicon-m-calendar')
+                            ->badge()
+                            ->sortable(),
+
+                        Tables\Columns\TextColumn::make('lokasi')
+                            ->label('Lokasi')
+                            ->icon('heroicon-m-map-pin')
+                            ->toggleable()
+                            ->searchable(),
+
+                        // Ringkasan konten yang aman (strip HTML), rapi, dan bisa dibungkus
+                        Tables\Columns\TextColumn::make('konten')
+                            ->label('Ringkasan')
+                            ->formatStateUsing(fn(string $state) => Str::limit(strip_tags($state), 140))
+                            ->wrap()
+                            ->searchable(),
+
+                        Tables\Columns\TextColumn::make('youtube_video_link')
+                            ->label('YouTube')
+                            ->state(fn($record) => filled($record->youtube_video_link) ? 'Ada' : '—')
+                            ->badge()
+                            ->color(fn($state) => $state === 'Ada' ? 'success' : 'gray')
+                            ->toggleable(),
+                    ])->extraAttributes(['class' => 'mt-4']),
                 ]),
             ])
-            ->paginated(false)
-            ->contentGrid([
-                'md' => 4,
-                'xl' => 4,
-            ])
+
+            // 🔎 Filters
             ->filters([
-                //
+                Filter::make('date_range')
+                    ->label('Rentang Tanggal')
+                    ->form([
+                        Forms\Components\DatePicker::make('from')->label('Dari'),
+                        Forms\Components\DatePicker::make('until')->label('Sampai'),
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        return $query
+                            ->when($data['from'] ?? null, fn($q, $date) => $q->whereDate('date', '>=', $date))
+                            ->when($data['until'] ?? null, fn($q, $date) => $q->whereDate('date', '<=', $date));
+                    }),
+
+                TernaryFilter::make('has_video')
+                    ->label('Dengan Video')
+                    ->trueLabel('Ada')
+                    ->falseLabel('Tidak Ada')
+                    ->queries(
+                        true: fn(Builder $q) => $q->whereNotNull('youtube_video_link')->where('youtube_video_link', '!=', ''),
+                        false: fn(Builder $q) => $q->where(function ($qq) {
+                            $qq->whereNull('youtube_video_link')->orWhere('youtube_video_link', '');
+                        }),
+                        blank: fn(Builder $q) => $q,
+                    ),
             ])
+
+            // 🧰 Actions
             ->actions([
-                Tables\Actions\ViewAction::make()->modalHeading('Preview Berita Kegiatan Sosial')->label('Show Details'),
-                Tables\Actions\EditAction::make()->modalHeading('Edit Berita Kegiatan Sosial'),
-                Tables\Actions\DeleteAction::make()->modalHeading('Hapus Berita Kegiatan Sosial')->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')->modalButton('Hapus'),
+                ActionGroup::make([
+                    Tables\Actions\ViewAction::make()
+                        ->modalHeading('Preview Berita Kegiatan Sosial')
+                        ->label('Preview'),
+
+                    Tables\Actions\EditAction::make()
+                        ->modalHeading('Edit Berita Kegiatan Sosial'),
+
+                    Tables\Actions\DeleteAction::make()
+                        ->modalHeading('Hapus Berita Kegiatan Sosial')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                        ->modalButton('Hapus'),
+                ])->icon('heroicon-m-ellipsis-vertical'),
             ])
-            ->bulkActions([
+
+            // ➕ Header & empty state
+            ->headerActions([
+                Tables\Actions\CreateAction::make()->label('Tambah Kegiatan'),
+            ])
+            ->emptyStateHeading('Belum ada kegiatan')
+            ->emptyStateDescription('Tambahkan kegiatan sosial pertama Anda untuk mulai mengisi daftar.')
+            ->emptyStateActions([
+                Tables\Actions\CreateAction::make()->label('Tambah Kegiatan'),
             ]);
     }
+
 
     public static function getRelations(): array
     {
