@@ -247,7 +247,9 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $layananHistory = Bantuan::where('user_id', $user->id)->latest()->get();
+        $layananHistory = Bantuan::with('jenisBantuan')
+            ->where('user_id', $user->id)
+            ->latest()->get();
         $donasiHistory = Donasi::where('user_id', $user->id)->latest()->get();
 
         return view('pages.profile', compact('user', 'layananHistory', 'donasiHistory'));
