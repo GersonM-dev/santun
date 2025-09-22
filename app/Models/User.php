@@ -57,4 +57,15 @@ class User extends Authenticatable implements  HasAvatar
     {
         return $this->avatar_url ? Storage::url($this->avatar_url) : null ;
     }
+
+    public function layanans()
+{
+    // ganti 'user_id' jika kolomnya bukan itu (mis. 'pemohon_id')
+    return $this->hasMany(\App\Models\Bantuan::class, 'user_id');
+}
+
+public function donasis()
+{
+    return $this->hasMany(\App\Models\Donasi::class, 'user_id');
+}
 }

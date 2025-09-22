@@ -244,8 +244,18 @@ class HomeController extends Controller
 
     public function showprofile()
     {
-        $user = Auth::user();
-        return view('pages.profile', compact('user'));
+        $user = Auth::user()->load([
+            'layanans' => fn($q) => $q->latest('created_at')
+                ->select(['id', 'user_id', 'created_at', 'status', 'jenis', 'category']),
+            'donasis' => fn($q) => $q->latest('created_at')
+                ->select(['id', 'user_id', 'created_at', 'status', 'jenis', 'mode', 'jumlah', 'barang']),
+        ]);
+
+        $layananHistory = $user->layanans;
+        $donasiHistory = $user->donasis;
+
+        return view('pages.profile', compact('user', 'layananHistory', 'donasiHistory'));
+
     }
 
     public function updateprofile(Request $request)
@@ -341,45 +351,45 @@ class HomeController extends Controller
     }
 
 
-public function infoLayanan(?string $slug = null)
-{
-    $layananSlug = $slug;
+    public function infoLayanan(?string $slug = null)
+    {
+        $layananSlug = $slug;
 
-    // Map slug -> kegiatan.type (match your Filament Select options)
-    $typeMap = [
-        'kesehatan-jiwa' => 'odgj',
-        'pendidikan'     => 'pendidikan',
-        'sosial-umum'    => 'sosial',
-    ];
+        // Map slug -> kegiatan.type (match your Filament Select options)
+        $typeMap = [
+            'kesehatan-jiwa' => 'odgj',
+            'pendidikan' => 'pendidikan',
+            'sosial-umum' => 'sosial',
+        ];
 
-    // Base query: only rows that actually have an image
-    $q = Kegiatan::query()
-        ->select(['gambar', 'name', 'status', 'date'])
-        ->whereNotNull('gambar')
-        ->where('gambar', '!=', '');
-
-    // If slug recognized, filter by its type
-    if ($slug && isset($typeMap[$slug])) {
-        $q->where('status', $typeMap[$slug]);
-    }
-
-    // Take the latest 5 for the carousel
-    $kegiatanImages = $q->orderBy('date', 'desc')
-        ->take(5)
-        ->get();
-
-    // (Optional) Fallback: if none found for that type, show latest overall
-    if ($kegiatanImages->isEmpty()) {
-        $kegiatanImages = Kegiatan::select(['gambar', 'name', 'status', 'date'])
+        // Base query: only rows that actually have an image
+        $q = Kegiatan::query()
+            ->select(['gambar', 'name', 'status', 'date'])
             ->whereNotNull('gambar')
-            ->where('gambar', '!=', '')
-            ->orderBy('date', 'desc')
+            ->where('gambar', '!=', '');
+
+        // If slug recognized, filter by its type
+        if ($slug && isset($typeMap[$slug])) {
+            $q->where('status', $typeMap[$slug]);
+        }
+
+        // Take the latest 5 for the carousel
+        $kegiatanImages = $q->orderBy('date', 'desc')
             ->take(5)
             ->get();
-    }
 
-    return view('pages.info-layanan', compact('layananSlug', 'kegiatanImages'));
-}
+        // (Optional) Fallback: if none found for that type, show latest overall
+        if ($kegiatanImages->isEmpty()) {
+            $kegiatanImages = Kegiatan::select(['gambar', 'name', 'status', 'date'])
+                ->whereNotNull('gambar')
+                ->where('gambar', '!=', '')
+                ->orderBy('date', 'desc')
+                ->take(5)
+                ->get();
+        }
+
+        return view('pages.info-layanan', compact('layananSlug', 'kegiatanImages'));
+    }
 
 
     public function infoDonasi(?string $slug = null)
