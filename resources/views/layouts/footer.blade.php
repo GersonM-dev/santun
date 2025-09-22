@@ -3,7 +3,7 @@
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('logo/logo.png') }}" class="h-16 me-3" alt="{{ config('app.name') }} Logo" />
+                    <img src="{{ asset('logo/logo.png') }}" class="h-64 me-3" alt="{{ config('app.name') }} Logo" />
                 </a>
             </div>
 

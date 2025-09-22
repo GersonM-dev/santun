@@ -341,14 +341,46 @@ class HomeController extends Controller
     }
 
 
-    public function infoLayanan(?string $slug = null)
-    {
-        // slug sama seperti yang dipakai di formlayanan
-        $layananSlug = $slug;
-        // Ambil 5 gambar kegiatan terbaru sebagai sumber carousel
-        $kegiatanImages = Kegiatan::orderBy('date', 'desc')->take(5)->get(['gambar', 'name']);
-        return view('pages.info-layanan', compact('layananSlug', 'kegiatanImages'));
+public function infoLayanan(?string $slug = null)
+{
+    $layananSlug = $slug;
+
+    // Map slug -> kegiatan.type (match your Filament Select options)
+    $typeMap = [
+        'kesehatan-jiwa' => 'odgj',
+        'pendidikan'     => 'pendidikan',
+        'sosial-umum'    => 'sosial',
+    ];
+
+    // Base query: only rows that actually have an image
+    $q = Kegiatan::query()
+        ->select(['gambar', 'name', 'type', 'date'])
+        ->whereNotNull('gambar')
+        ->where('gambar', '!=', '');
+
+    // If slug recognized, filter by its type
+    if ($slug && isset($typeMap[$slug])) {
+        $q->where('type', $typeMap[$slug]);
     }
+
+    // Take the latest 5 for the carousel
+    $kegiatanImages = $q->orderBy('date', 'desc')
+        ->take(5)
+        ->get();
+
+    // (Optional) Fallback: if none found for that type, show latest overall
+    if ($kegiatanImages->isEmpty()) {
+        $kegiatanImages = Kegiatan::select(['gambar', 'name', 'type', 'date'])
+            ->whereNotNull('gambar')
+            ->where('gambar', '!=', '')
+            ->orderBy('date', 'desc')
+            ->take(5)
+            ->get();
+    }
+
+    return view('pages.info-layanan', compact('layananSlug', 'kegiatanImages'));
+}
+
 
     public function infoDonasi(?string $slug = null)
     {

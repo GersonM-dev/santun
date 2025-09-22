@@ -14,5 +14,6 @@ class Kegiatan extends Model
         'youtube_video_link',
         'lokasi',
         'is_approved',
+        'type',
     ];
 }

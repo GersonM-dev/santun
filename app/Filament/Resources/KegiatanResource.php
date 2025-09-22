@@ -34,6 +34,16 @@ class KegiatanResource extends Resource
                 Forms\Components\DatePicker::make('date')
                     ->required()
                     ->label('Date'),
+                Forms\Components\Select::make('type')
+                    ->required()
+                    ->label('Tipe Kegiatan')
+                    ->options([
+                        'odgj' => 'Khusus Kesehatan Jiwa',
+                        'pendidikan' => 'Pendidikan',
+                        'sosial' => 'Sosial Umum',
+                    ])
+                    ->placeholder('Pilih Tipe Kegiatan')
+                    ->searchable(),
                 Forms\Components\FileUpload::make('gambar')
                     ->required()
                     ->label('Gambar')->columnSpan('full'),
