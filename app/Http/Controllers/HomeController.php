@@ -334,7 +334,7 @@ class HomeController extends Controller
                         'message' => $msg,
                         'countryCode' => '62',
                     ],
-                    CURLOPT_HTTPHEADER => ['Authorization: 1DE6DXXKg79mL8ivtLkK'],
+                    CURLOPT_HTTPHEADER => ['Authorization: pAsa13DiJ8LzeSb58578'],
                 ]);
                 $response = curl_exec($curl);
                 if (curl_errno($curl)) {
