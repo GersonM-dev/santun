@@ -138,7 +138,7 @@
             <!-- text - end -->
 
             <!-- form - start -->
-            <form action="#" method="POST" class="mx-auto grid max-w-screen-md gap-4">
+            <form action="{{ route('formlayanan.submit') }}" method="POST" class="mx-auto grid max-w-screen-md gap-4">
                 @csrf
 
                 <!-- Nama -->
