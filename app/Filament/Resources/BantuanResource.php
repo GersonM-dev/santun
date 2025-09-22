@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BantuanResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BantuanResource\RelationManagers;
+use Filament\Tables\Actions\Action;
 
 class BantuanResource extends Resource
 {
@@ -60,6 +61,14 @@ class BantuanResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->headerActions([
+                Action::make('download_rekap_pdf')
+                    ->label('Download Rekap PDF')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->url(fn() => route('bantuan.rekap.pdf'))
+                    ->openUrlInNewTab(),
+            ])
+
             ->columns([
                 TextColumn::make('nama')->label('Nama')->searchable(),
                 TextColumn::make('jenisbantuan.name')->label('Jenis Layanan')->searchable(),

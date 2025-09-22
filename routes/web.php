@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/formdonasi', [HomeController::class, 'submitDonasi'])->name('formdonasi.submit');
 });
 
-Route::middleware(['web','auth']) // sesuaikan middleware admin/filament Anda
+Route::middleware(['web', 'auth']) // sesuaikan middleware admin/filament Anda
     ->get('/admin/donasi/rekap-pdf', [DonasiPdfController::class, 'rekap'])
     ->name('donasi.rekap.pdf');
 
@@ -40,3 +40,7 @@ Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect']
     ->name('socialite.redirect');
 Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])
     ->name('socialite.callback');
+
+use App\Http\Controllers\BantuanPdfController;
+
+Route::get('/bantuan/rekap/pdf', [BantuanPdfController::class, 'rekap'])->name('bantuan.rekap.pdf');

@@ -111,7 +111,7 @@ class DonasiResource extends Resource
                 ->icon('heroicon-o-arrow-down-tray')
                 ->url(fn () => route('donasi.rekap.pdf'))
                 ->openUrlInNewTab(),
-        ])
+        ]) 
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nama Donatur')->searchable(),
                 Tables\Columns\TextColumn::make('phone')->label('Nomor Telepon'),

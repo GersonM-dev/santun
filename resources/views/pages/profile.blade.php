@@ -29,7 +29,6 @@
                                 <th class="px-4 py-3 text-left font-semibold text-gray-700">Tanggal</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-700">Jenis Layanan</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-700">Status</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-700">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white">
@@ -85,7 +84,6 @@
                                 <th class="px-4 py-3 text-left font-semibold text-gray-700">Jenis</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-700">Nominal/Barang</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-700">Status</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-700">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white">
