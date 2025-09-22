@@ -354,13 +354,13 @@ public function infoLayanan(?string $slug = null)
 
     // Base query: only rows that actually have an image
     $q = Kegiatan::query()
-        ->select(['gambar', 'name', 'type', 'date'])
+        ->select(['gambar', 'name', 'status', 'date'])
         ->whereNotNull('gambar')
         ->where('gambar', '!=', '');
 
     // If slug recognized, filter by its type
     if ($slug && isset($typeMap[$slug])) {
-        $q->where('type', $typeMap[$slug]);
+        $q->where('status', $typeMap[$slug]);
     }
 
     // Take the latest 5 for the carousel
@@ -370,7 +370,7 @@ public function infoLayanan(?string $slug = null)
 
     // (Optional) Fallback: if none found for that type, show latest overall
     if ($kegiatanImages->isEmpty()) {
-        $kegiatanImages = Kegiatan::select(['gambar', 'name', 'type', 'date'])
+        $kegiatanImages = Kegiatan::select(['gambar', 'name', 'status', 'date'])
             ->whereNotNull('gambar')
             ->where('gambar', '!=', '')
             ->orderBy('date', 'desc')

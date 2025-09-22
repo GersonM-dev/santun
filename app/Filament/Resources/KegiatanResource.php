@@ -34,7 +34,7 @@ class KegiatanResource extends Resource
                 Forms\Components\DatePicker::make('date')
                     ->required()
                     ->label('Date'),
-                Forms\Components\Select::make('type')
+                Forms\Components\Select::make('status')
                     ->required()
                     ->label('Tipe Kegiatan')
                     ->options([
