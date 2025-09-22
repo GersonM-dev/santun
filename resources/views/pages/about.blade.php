@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <section class="py-10 sm:py-14 lg:py-16">
   @php
       /** @var \App\Models\AboutUs|null $about */
@@ -100,3 +103,5 @@
     </div>
   </div>
 </section>
+
+@endsection
