@@ -90,40 +90,40 @@
                         </thead>
                         <tbody class="divide-y divide-gray-100 bg-white">
                             @foreach($donasiHistory as $item)
-                                                <tr class="hover:bg-gray-50">
-                                                    <td class="px-4 py-3 text-gray-700">
-                                                        {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
-                                                    </td>
-                                                    <td class="px-4 py-3 text-gray-700">
-                                                        {{ ucfirst($item->type ?? '—') }}
-                                                    </td>
-                                                    <td class="px-4 py-3 text-gray-700">
-                                                        @if($item->type === 'Materi' && $item->money->count())
-                                                            Rp {{ number_format($item->money->sum('total'), 0, ',', '.') }}
-                                                        @elseif($item->type === 'Non Materi' && $item->items->count())
-                                                            {{ $item->items->map(fn($i) => $i->name . ' (' . $i->qty . ' ' . optional($i->satuan)->name . ')')->join(', ') }}
-                                                        @else
-                                                            —
-                                                        @endif
-                                                    </td>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 text-gray-700">
+                                        {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        {{ ucfirst($item->type ?? '—') }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        @if($item->type === 'Materi' && $item->money->count())
+                                            Rp {{ number_format($item->money->sum('total'), 0, ',', '.') }}
+                                        @elseif($item->type === 'Non Materi' && $item->items->count())
+                                            {{ $item->items->map(fn($i) => $i->name . ' (' . $i->qty . ' ' . optional($i->satuan)->name . ')')->join(', ') }}
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
 
-                                                    <td class="px-4 py-3">
-                                                        @php
-                                                            $status = strtolower($item->status ?? 'menunggu');
-                                                            $map = [
-                                                                'terkonfirmasi' => 'bg-green-100 text-green-700 ring-green-200',
-                                                                'diproses' => 'bg-amber-100 text-amber-800 ring-amber-200',
-                                                                'menunggu' => 'bg-gray-100 text-gray-700 ring-gray-200',
-                                                                'dibatalkan' => 'bg-rose-100 text-rose-700 ring-rose-200',
-                                                            ];
-                                                            $cls = $map[$status] ?? 'bg-gray-100 text-gray-700 ring-gray-200';
-                                                        @endphp
-                                 <span
-                                                            class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 {{ $cls }}">
-                                                            {{ ucfirst($status) }}
-                                                        </span>
-                                                    </td>
-                                                </tr>
+                                    <td class="px-4 py-3">
+                                        @php
+                                            $status = strtolower($item->status ?? 'menunggu');
+                                            $map = [
+                                                'terkonfirmasi' => 'bg-green-100 text-green-700 ring-green-200',
+                                                'diproses' => 'bg-amber-100 text-amber-800 ring-amber-200',
+                                                'menunggu' => 'bg-gray-100 text-gray-700 ring-gray-200',
+                                                'dibatalkan' => 'bg-rose-100 text-rose-700 ring-rose-200',
+                                            ];
+                                            $cls = $map[$status] ?? 'bg-gray-100 text-gray-700 ring-gray-200';
+                                        @endphp
+                                        <span
+                                            class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 {{ $cls }}">
+                                            {{ ucfirst($status) }}
+                                        </span>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
