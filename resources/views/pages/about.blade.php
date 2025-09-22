@@ -89,6 +89,7 @@
             </section>
 
             {{-- 2) CONTENT ROW: Left = Visi & Misi, Right = Struktur --}}
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl text-center">Visi Misi & Struktur Organisasi</h2>
             <div class="mt-10 grid items-start gap-10 lg:grid-cols-2">
                 <!-- Left: Visi & Misi (dynamic, justified) -->
                 <div>
