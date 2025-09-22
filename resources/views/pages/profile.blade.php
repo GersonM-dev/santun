@@ -56,10 +56,10 @@
                                         {{ ucfirst($status) }}
                                     </span>
                                 </td>
-                                <td class="px-4 py-3">
+                                <!-- <td class="px-4 py-3">
                                     <a href="{{ route('layanan.show', $item->id) }}"
                                        class="text-sky-600 hover:text-sky-700">Detail</a>
-                                </td>
+                                </td> -->
                             </tr>
                         @endforeach
                     </tbody>
@@ -124,10 +124,10 @@
                                         {{ ucfirst($status) }}
                                     </span>
                                 </td>
-                                <td class="px-4 py-3">
+                                <!-- <td class="px-4 py-3">
                                     <a href="{{ route('donasi.show', $item->id) }}"
                                        class="text-sky-600 hover:text-sky-700">Detail</a>
-                                </td>
+                                </td> -->
                             </tr>
                         @endforeach
                     </tbody>
