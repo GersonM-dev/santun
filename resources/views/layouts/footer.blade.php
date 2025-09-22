@@ -3,10 +3,7 @@
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('logo.PNG') }}" class="h-8 me-3" alt="{{ config('app.name') }} Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap">
-                        {{ config('app.name') }}
-                    </span>
+                    <img src="{{ asset('logo/logo.PNG') }}" class="h-16 me-3" alt="{{ config('app.name') }} Logo" />
                 </a>
             </div>
 
