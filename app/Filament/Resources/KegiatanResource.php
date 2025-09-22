@@ -161,9 +161,9 @@ class KegiatanResource extends Resource
             ])
 
             // ➕ Header & empty state
-            ->headerActions([
-                Tables\Actions\CreateAction::make()->label('Tambah Kegiatan'),
-            ])
+            // ->headerActions([
+            //     Tables\Actions\CreateAction::make()->label('Tambah Kegiatan'),
+            // ])
             ->emptyStateHeading('Belum ada kegiatan')
             ->emptyStateDescription('Tambahkan kegiatan sosial pertama Anda untuk mulai mengisi daftar.')
             ->emptyStateActions([
