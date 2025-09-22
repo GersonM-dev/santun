@@ -1,77 +1,102 @@
-@extends('layouts.app')
+<section class="py-10 sm:py-14 lg:py-16">
+  @php
+      /** @var \App\Models\AboutUs|null $about */
+      $about = $about ?? \App\Models\AboutUs::query()->first();
 
-@section('content')
-    @php
-        /** @var \App\Models\AboutUs|null $about */
-        $about = $about ?? \App\Models\AboutUs::query()->first();
+      $title = $about->title ?? 'Tentang Kami';
+      $img   = !empty($about?->struktur)
+                 ? asset('storage/'.$about->struktur)
+                 : asset('logo.PNG'); // fallback ke logo
 
-        // STATIC MAPS (embed + optional "open in maps" link)
-    $STATIC_EMBED = 'https://www.google.com/maps/embed?pb=!4v1758514234476!6m8!1m7!1sOr70pVQso5ZZA_ukU3lnLw!2m2!1d-7.344459464030086!2d109.2388455258094!3f239.71447180589035!4f-14.754068982584883!5f0.4000000000000002';
-    $STATIC_VIEW  = 'https://www.google.com/maps?q=-7.344459464030086,109.2388455258094';
-    @endphp
+      // Ambil ringkasannya (hilangkan tag HTML dari RichEditor)
+      $visiExcerpt = trim(\Illuminate\Support\Str::words(strip_tags($about->visi ?? ''), 60, '…'));
+      $misiExcerpt = trim(\Illuminate\Support\Str::words(strip_tags($about->misi ?? ''), 40, '…'));
+  @endphp
 
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
-        <div class="mx-auto max-w-screen-md px-4 md:px-8">
-
-            {{-- Judul (dynamic) --}}
-            <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6">
-                {{ $about?->title ?? 'Tentang Kami' }}
-            </h1>
-
-            @if(! $about)
-                <div class="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-yellow-700">
-                    Belum ada data <em>About Us</em>. Silakan isi dari panel admin.
-                </div>
-            @else
-                {{-- Struktur Organisasi (dynamic) --}}
-                @if(!empty($about->struktur))
-                    <div class="relative mb-8 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:mb-10">
-                        <img
-                            src="{{ asset('storage/'.$about->struktur) }}"
-                            loading="lazy"
-                            alt="Struktur Organisasi"
-                            class="h-full w-full max-h-[560px] bg-white object-contain"
-                        />
-                    </div>
-                @endif
-
-                {{-- Visi (dynamic) --}}
-                @if(!empty($about->visi))
-                    <h2 class="mb-2 text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4">Visi</h2>
-                    <div class="mb-6 text-gray-600 sm:text-lg md:mb-8">
-                        {!! $about->visi !!}
-                    </div>
-                @endif
-
-                {{-- Misi (dynamic) --}}
-                @if(!empty($about->misi))
-                    <h2 class="mb-2 text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4">Misi</h2>
-                    <div class="mb-6 text-gray-600 sm:text-lg md:mb-8">
-                        {!! $about->misi !!}
-                    </div>
-                @endif
-
-                {{-- Alamat: STATIC EMBED ONLY --}}
-                <h2 class="mb-2 text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4">Alamat</h2>
-                <div class="aspect-video w-full overflow-hidden rounded-lg border">
-                    <iframe
-                        src="{{ $STATIC_EMBED }}"
-                        class="h-full w-full border-0"
-                        allowfullscreen
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-
-                {{-- Optional: link ke Google Maps (pakai link statis; atau ganti ke $about->alamat jika ingin) --}}
-                <p class="mt-3 text-sm text-gray-600">
-                    <a href="{{ $STATIC_VIEW }}" target="_blank" rel="noopener"
-                       class="text-indigo-600 underline hover:text-indigo-700">
-                        Buka di Google Maps
-                    </a>
-                </p>
-            @endif
-
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="grid items-center gap-10 lg:grid-cols-2">
+      <!-- Kiri: Gambar/Logo/Struktur (dynamic) -->
+      <div class="flex justify-center">
+        <div class="rounded-2xl bg-white p-4 shadow-lg ring-1 ring-gray-200">
+          <img
+            src="{{ $img }}"
+            alt="{{ $title }}"
+            class="h-72 w-72 object-contain sm:h-80 sm:w-80"
+            loading="lazy"
+          />
         </div>
+      </div>
+
+      <!-- Kanan: Teks & Fitur (dynamic excerpts + justified) -->
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">{{ $title }}</h2>
+
+        @if($visiExcerpt || $misiExcerpt)
+          @if($visiExcerpt)
+            <p class="mt-5 max-w-2xl text-gray-700 leading-relaxed text-justify">
+              {{ $visiExcerpt }}
+            </p>
+          @endif
+
+          @if($misiExcerpt)
+            <p class="mt-3 max-w-2xl text-gray-700 leading-relaxed text-justify">
+              {{ $misiExcerpt }}
+            </p>
+          @endif
+        @else
+          {{-- Fallback jika belum ada konten --}}
+          <p class="mt-5 max-w-2xl text-gray-700 leading-relaxed text-justify">
+            Relawan ODGJ Baturraden adalah organisasi sosial yang bergerak di bidang kesehatan jiwa,
+            pendidikan, dan sosial kemasyarakatan. Kami mengundang Anda untuk mengenal kami lebih dekat.
+          </p>
+        @endif
+
+        <!-- Fitur -->
+        <div class="mt-8 grid gap-5 sm:grid-cols-2">
+          <!-- Item 1 -->
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+              <!-- Icon form/layanan -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6 2a2 2 0 0 0-2 2v16l4-2 4 2 4-2 4 2V4a2 2 0 0 0-2-2H6z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-semibold text-gray-900">Pendaftaran Layanan Bantuan</div>
+              <div class="text-sm text-gray-600 leading-relaxed text-justify">
+                Layanan bantuan kesehatan jiwa (ODGJ), pendidikan, dan sosial.
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 ring-1 ring-cyan-100">
+              <!-- Icon donasi -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 21s-8-4.438-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.562-8 11-8 11z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-semibold text-gray-900">Penggalangan Donasi</div>
+              <div class="text-sm text-gray-600 leading-relaxed text-justify">
+                Donasi materi & non-materi untuk mendukung program sosial berkelanjutan.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-10 border-t border-gray-200 pt-5">
+          <a href="{{ route('about') }}"
+             class="inline-flex items-center gap-2 font-medium text-blue-700 hover:text-blue-800">
+            Pelajari lebih lanjut tentang perjuangan kami
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
-@endsection
+  </div>
+</section>
