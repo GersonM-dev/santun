@@ -6,8 +6,8 @@
         $about = $about ?? \App\Models\AboutUs::query()->first();
 
         // STATIC MAPS (embed + optional "open in maps" link)
-        $STATIC_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15867.961303085263!2d106.61734189999999!3d-6.1320013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a010045b97d2d%3A0x67697fa96743a23d!2sAyam%20Gepuk%20Wonkdezo!5e0!3m2!1sid!2sid!4v1758510145362!5m2!1sid!2sid';
-        $STATIC_VIEW  = 'https://www.google.com/maps?q=-6.1320013,106.6173419';
+    $STATIC_EMBED = 'https://www.google.com/maps/embed?pb=!4v1758514234476!6m8!1m7!1sOr70pVQso5ZZA_ukU3lnLw!2m2!1d-7.344459464030086!2d109.2388455258094!3f239.71447180589035!4f-14.754068982584883!5f0.4000000000000002';
+    $STATIC_VIEW  = 'https://www.google.com/maps?q=-7.344459464030086,109.2388455258094';
     @endphp
 
     <div class="bg-white py-6 sm:py-8 lg:py-12">
