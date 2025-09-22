@@ -74,6 +74,7 @@ class KegiatanResource extends Resource
                     ])->extraAttributes(['class' => 'mt-6']),
                 ]),
             ])
+            ->paginated(false)
             ->contentGrid([
                 'md' => 2,
                 'xl' => 3,
