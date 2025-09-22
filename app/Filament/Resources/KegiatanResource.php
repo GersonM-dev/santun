@@ -74,7 +74,7 @@ class KegiatanResource extends Resource
                         ->disk('public') // sesuaikan jika bukan "public"
                         ->height(200)
                         ->extraImgAttributes(['loading' => 'lazy', 'alt' => 'Gambar kegiatan'])
-                        ->extraAttributes(['class' => 'rounded-lg shadow-lg w-full object-cover']),
+                        ->extraAttributes(['class' => 'rounded-lg shadow-lg w-full object-contain']),
 
                     Panel::make([
                         Tables\Columns\TextColumn::make('name')
