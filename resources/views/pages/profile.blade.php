@@ -38,7 +38,7 @@
                                         {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
                                     </td>
                                     <td class="px-4 py-3 text-gray-700">
-                                        {{ $item->id_jenisBantuan->name}}
+                                        {{ optional($item->jenisBantuan)->name ?? '—' }}
                                     </td>
                                     <td class="px-4 py-3">
                                         @php

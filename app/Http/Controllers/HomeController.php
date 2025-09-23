@@ -82,6 +82,7 @@ class HomeController extends Controller
 
         // Store the bantuan request
         $bantuan = \App\Models\Bantuan::create([
+            'user_id' => Auth::id(),
             'nama' => $request->nama,
             'date_birth' => $request->date_birth,
             'id_jenisBantuan' => $request->id_jenisBantuan,
@@ -156,6 +157,7 @@ class HomeController extends Controller
 
         // Simpan Donasi
         $donasi = Donasi::create([
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'phone' => $request->phone,
             'date' => $request->date,
