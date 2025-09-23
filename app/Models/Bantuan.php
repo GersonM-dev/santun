@@ -15,6 +15,7 @@ class Bantuan extends Model
         'alamat',
         'kontak',
         'status',
+        'user_id',
     ];
 
     /**

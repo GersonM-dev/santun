@@ -14,6 +14,7 @@ class Donasi extends Model
         'tujuan_donasi_id',
         'catatan',
         'is_anonymous',
+        'user_id',
     ];
 
     public function tujuanDonasi()
