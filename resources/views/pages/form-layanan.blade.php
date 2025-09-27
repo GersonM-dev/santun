@@ -180,7 +180,7 @@
                 <div>
                     <label for="kontak" class="mb-2 block text-sm text-gray-800 font-medium">Kontak<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="kontak" name="kontak" required
+                    <input type="number" id="kontak" name="kontak" required
                         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                 </div>
 

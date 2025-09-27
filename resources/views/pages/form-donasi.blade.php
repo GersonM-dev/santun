@@ -129,7 +129,7 @@
                     <div>
                         <label for="phone" class="block font-medium text-gray-800 mb-1">Nomor Telepon<span
                                 class="text-red-500">*</span></label>
-                        <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" required
+                        <input type="number" name="phone" id="phone" value="{{ old('phone') }}" required
                             class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 focus:ring" />
                         @error('phone')
                             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
