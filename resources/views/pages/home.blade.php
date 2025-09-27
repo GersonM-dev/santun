@@ -275,37 +275,43 @@
                         </svg>
                     </button>
 
-                    <div id="donasi-slider" class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 pl-1 pr-1 sm:pl-12 sm:pr-12 lg:pb-4">
-                        @foreach ($donasiCatatan as $donasi)
-                            @php
-                                $displayName = $donasi->is_anonymous ? 'Donatur Anonim' : ($donasi->name ?: 'Donatur');
-                                $tanggal = $donasi->date ? \Carbon\Carbon::parse($donasi->date) : $donasi->created_at;
-                                $displayDate = optional($tanggal)->translatedFormat('d F Y');
-                                $tujuan = $donasi->tujuanDonasi?->name;
-                                $typeLabel = $donasi->type;
-                                $catatan = trim((string) $donasi->catatan);
-                            @endphp
+                    <div id="donasi-slider" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 pl-1 pr-1 sm:pl-12 sm:pr-12 lg:pb-4">
+                        @foreach ($donasiCatatan->chunk(3) as $donasiSlide)
+                            <div class="donasi-slide flex w-full flex-shrink-0 snap-start">
+                                <div class="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
+                                    @foreach ($donasiSlide as $donasi)
+                                        @php
+                                            $displayName = $donasi->is_anonymous ? 'Donatur Anonim' : ($donasi->name ?: 'Donatur');
+                                            $tanggal = $donasi->date ? \Carbon\Carbon::parse($donasi->date) : $donasi->created_at;
+                                            $displayDate = optional($tanggal)->translatedFormat('d F Y');
+                                            $tujuan = $donasi->tujuanDonasi?->name;
+                                            $typeLabel = $donasi->type;
+                                            $catatan = trim((string) $donasi->catatan);
+                                        @endphp
 
-                            <div class="flex min-w-[17rem] flex-shrink-0 flex-col gap-3 rounded-lg border bg-white p-4 shadow-sm transition hover:shadow-md sm:min-w-[20rem] md:p-6 snap-start">
-                                <div>
-                                    <span class="block text-sm font-bold md:text-base">{{ $displayName }}</span>
-                                    @if ($displayDate)
-                                        <span class="block text-sm text-gray-500">{{ $displayDate }}</span>
-                                    @endif
+                                        <div class="flex flex-col gap-3 rounded-lg border bg-white p-4 shadow-sm transition hover:shadow-md md:p-6">
+                                            <div>
+                                                <span class="block text-sm font-bold md:text-base">{{ $displayName }}</span>
+                                                @if ($displayDate)
+                                                    <span class="block text-sm text-gray-500">{{ $displayDate }}</span>
+                                                @endif
 
-                                    <div class="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
-                                        @if ($typeLabel)
-                                            <span class="rounded-full bg-cyan-50 px-2 py-1 font-medium text-cyan-600">{{ $typeLabel }}</span>
-                                        @endif
-                                        @if ($tujuan)
-                                            <span class="rounded-full bg-gray-100 px-2 py-1">{{ $tujuan }}</span>
-                                        @endif
-                                    </div>
+                                                <div class="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
+                                                    @if ($typeLabel)
+                                                        <span class="rounded-full bg-cyan-50 px-2 py-1 font-medium text-cyan-600">{{ $typeLabel }}</span>
+                                                    @endif
+                                                    @if ($tujuan)
+                                                        <span class="rounded-full bg-gray-100 px-2 py-1">{{ $tujuan }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <p class="text-gray-600">
+                                                {{ $catatan !== '' ? \Illuminate\Support\Str::limit($catatan, 200) : 'Tidak ada catatan tambahan.' }}
+                                            </p>
+                                        </div>
+                                    @endforeach
                                 </div>
-
-                                <p class="text-gray-600">
-                                    {{ $catatan !== '' ? \Illuminate\Support\Str::limit($catatan, 200) : 'Tidak ada catatan tambahan.' }}
-                                </p>
                             </div>
                         @endforeach
                     </div>
@@ -360,13 +366,20 @@
                     toggleButtonState(donasiNext, disableNext || maxScrollLeft <= 0);
                 };
 
-                const scrollAmount = () => Math.max(donasiSlider.clientWidth * 0.9, 200);
-                const smoothScroll = (offset) => {
-                    donasiSlider.scrollBy({ left: offset, behavior: 'smooth' });
+                const getSlideWidth = () => {
+                    const firstSlide = donasiSlider.querySelector('.donasi-slide');
+                    const slideWidth = firstSlide ? firstSlide.getBoundingClientRect().width : donasiSlider.clientWidth;
+                    const style = window.getComputedStyle(donasiSlider);
+                    const gap = parseFloat(style.columnGap || style.gap || '0');
+                    return slideWidth + gap;
                 };
 
-                donasiPrev.addEventListener('click', () => smoothScroll(-scrollAmount()));
-                donasiNext.addEventListener('click', () => smoothScroll(scrollAmount()));
+                const smoothScroll = (direction) => {
+                    donasiSlider.scrollBy({ left: direction * getSlideWidth(), behavior: 'smooth' });
+                };
+
+                donasiPrev.addEventListener('click', () => smoothScroll(-1));
+                donasiNext.addEventListener('click', () => smoothScroll(1));
 
                 const onScroll = () => window.requestAnimationFrame(updateDonasiNavState);
                 donasiSlider.addEventListener('scroll', onScroll, { passive: true });
