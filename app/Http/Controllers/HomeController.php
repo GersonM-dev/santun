@@ -22,9 +22,17 @@ class HomeController extends Controller
     public function index()
     {
         $kegiatans = Kegiatan::orderBy('date', 'desc')->take(4)->get();
-        return view('pages.home', compact('kegiatans'));
-    }
+        $donasiCatatan = Donasi::query()
+            ->with('tujuanDonasi')
+            ->whereNotNull('catatan')
+            ->where('catatan', '!=', '')
+            ->orderByDesc('date')
+            ->orderByDesc('created_at')
+            ->take(3)
+            ->get();
 
+        return view('pages.home', compact('kegiatans', 'donasiCatatan'));
+    }
     public function kegiatan()
     {
         $kegiatans = Kegiatan::orderBy('date', 'desc')->paginate(8);
@@ -405,6 +413,5 @@ class HomeController extends Controller
         $kegiatanImages = Kegiatan::orderBy('date', 'desc')->take(5)->get(['gambar', 'name']);
         return view('pages.info-donasi', compact('mode', 'kegiatanImages'));
     }
-
 
 }

@@ -261,6 +261,55 @@
         </div>
     </div>
 
+    <!-- Catatan Donasi -->
+    <div class="py-6 sm:py-8 lg:py-12 mb-4">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+            <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">Catatan Donasi</h2>
+
+            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
+                @forelse ($donasiCatatan as $donasi)
+                    @php
+                        $displayName = $donasi->is_anonymous ? 'Donatur Anonim' : ($donasi->name ?: 'Donatur');
+                        $tanggal = $donasi->date ? \Carbon\Carbon::parse($donasi->date) : $donasi->created_at;
+                        $displayDate = optional($tanggal)->translatedFormat('d F Y');
+                        $tujuan = $donasi->tujuanDonasi?->name;
+                        $typeLabel = $donasi->type;
+                        $catatan = trim((string) $donasi->catatan);
+                    @endphp
+
+                    <div class="flex flex-col gap-3 rounded-lg border p-4 md:p-6">
+                        <div>
+                            <span class="block text-sm font-bold md:text-base">{{ $displayName }}</span>
+                            @if ($displayDate)
+                                <span class="block text-sm text-gray-500">{{ $displayDate }}</span>
+                            @endif
+
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
+                                @if ($typeLabel)
+                                    <span class="rounded-full bg-cyan-50 px-2 py-1 font-medium text-cyan-600">{{ $typeLabel }}</span>
+                                @endif
+                                @if ($tujuan)
+                                    <span class="rounded-full bg-gray-100 px-2 py-1">{{ $tujuan }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600">
+                            {{ $catatan !== '' ? \Illuminate\Support\Str::limit($catatan, 180) : 'Tidak ada catatan tambahan.' }}
+                        </p>
+                    </div>
+                @empty
+                    <div class="sm:col-span-2 md:col-span-3">
+                        <div class="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-6 text-center text-gray-500">
+                            <span class="text-lg font-medium">Catatan donasi belum tersedia.</span>
+                            <p class="text-sm">Jadilah yang pertama menyampaikan pesan kebaikan melalui donasi Anda.</p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
     <!-- Carousel Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
