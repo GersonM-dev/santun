@@ -266,51 +266,68 @@
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">Catatan Donasi</h2>
 
-            <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
-                @forelse ($donasiCatatan as $donasi)
-                    @php
-                        $displayName = $donasi->is_anonymous ? 'Donatur Anonim' : ($donasi->name ?: 'Donatur');
-                        $tanggal = $donasi->date ? \Carbon\Carbon::parse($donasi->date) : $donasi->created_at;
-                        $displayDate = optional($tanggal)->translatedFormat('d F Y');
-                        $tujuan = $donasi->tujuanDonasi?->name;
-                        $typeLabel = $donasi->type;
-                        $catatan = trim((string) $donasi->catatan);
-                    @endphp
+            @if ($donasiCatatan->isNotEmpty())
+                <div class="relative">
+                    <button id="donasi-prev" type="button" aria-label="Donasi sebelumnya"
+                        class="absolute left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow transition hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-500 sm:flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
 
-                    <div class="flex flex-col gap-3 rounded-lg border p-4 md:p-6">
-                        <div>
-                            <span class="block text-sm font-bold md:text-base">{{ $displayName }}</span>
-                            @if ($displayDate)
-                                <span class="block text-sm text-gray-500">{{ $displayDate }}</span>
-                            @endif
+                    <div id="donasi-slider" class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 pl-1 pr-1 sm:pl-12 sm:pr-12 lg:pb-4">
+                        @foreach ($donasiCatatan as $donasi)
+                            @php
+                                $displayName = $donasi->is_anonymous ? 'Donatur Anonim' : ($donasi->name ?: 'Donatur');
+                                $tanggal = $donasi->date ? \Carbon\Carbon::parse($donasi->date) : $donasi->created_at;
+                                $displayDate = optional($tanggal)->translatedFormat('d F Y');
+                                $tujuan = $donasi->tujuanDonasi?->name;
+                                $typeLabel = $donasi->type;
+                                $catatan = trim((string) $donasi->catatan);
+                            @endphp
 
-                            <div class="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
-                                @if ($typeLabel)
-                                    <span class="rounded-full bg-cyan-50 px-2 py-1 font-medium text-cyan-600">{{ $typeLabel }}</span>
-                                @endif
-                                @if ($tujuan)
-                                    <span class="rounded-full bg-gray-100 px-2 py-1">{{ $tujuan }}</span>
-                                @endif
+                            <div class="flex min-w-[17rem] flex-shrink-0 flex-col gap-3 rounded-lg border bg-white p-4 shadow-sm transition hover:shadow-md sm:min-w-[20rem] md:p-6 snap-start">
+                                <div>
+                                    <span class="block text-sm font-bold md:text-base">{{ $displayName }}</span>
+                                    @if ($displayDate)
+                                        <span class="block text-sm text-gray-500">{{ $displayDate }}</span>
+                                    @endif
+
+                                    <div class="mt-2 flex flex-wrap gap-2 text-xs text-gray-500">
+                                        @if ($typeLabel)
+                                            <span class="rounded-full bg-cyan-50 px-2 py-1 font-medium text-cyan-600">{{ $typeLabel }}</span>
+                                        @endif
+                                        @if ($tujuan)
+                                            <span class="rounded-full bg-gray-100 px-2 py-1">{{ $tujuan }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-600">
+                                    {{ $catatan !== '' ? \Illuminate\Support\Str::limit($catatan, 200) : 'Tidak ada catatan tambahan.' }}
+                                </p>
                             </div>
-                        </div>
+                        @endforeach
+                    </div>
 
-                        <p class="text-gray-600">
-                            {{ $catatan !== '' ? \Illuminate\Support\Str::limit($catatan, 180) : 'Tidak ada catatan tambahan.' }}
-                        </p>
-                    </div>
-                @empty
-                    <div class="sm:col-span-2 md:col-span-3">
-                        <div class="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-6 text-center text-gray-500">
-                            <span class="text-lg font-medium">Catatan donasi belum tersedia.</span>
-                            <p class="text-sm">Jadilah yang pertama menyampaikan pesan kebaikan melalui donasi Anda.</p>
-                        </div>
-                    </div>
-                @endforelse
-            </div>
+                    <button id="donasi-next" type="button" aria-label="Donasi selanjutnya"
+                        class="absolute right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow transition hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-500 sm:flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            @else
+                <div class="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-6 text-center text-gray-500">
+                    <span class="text-lg font-medium">Catatan donasi belum tersedia.</span>
+                    <p class="text-sm">Jadilah yang pertama menyampaikan pesan kebaikan melalui donasi Anda.</p>
+                </div>
+            @endif
         </div>
     </div>
 
-    <!-- Carousel Script -->
+    
+<!-- Carousel Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const images = document.querySelectorAll('#carousel-images .carousel-img');
@@ -322,6 +339,40 @@
                 images[current].classList.remove('opacity-0');
                 images[current].classList.add('opacity-100');
             }, 3500); // Change image every 3.5 seconds
+
+            const donasiSlider = document.getElementById('donasi-slider');
+            const donasiPrev = document.getElementById('donasi-prev');
+            const donasiNext = document.getElementById('donasi-next');
+
+            if (donasiSlider && donasiPrev && donasiNext) {
+                const toggleButtonState = (button, disabled) => {
+                    button.disabled = disabled;
+                    button.classList.toggle('opacity-40', disabled);
+                    button.classList.toggle('cursor-not-allowed', disabled);
+                    button.classList.toggle('pointer-events-none', disabled);
+                };
+
+                const updateDonasiNavState = () => {
+                    const maxScrollLeft = donasiSlider.scrollWidth - donasiSlider.clientWidth;
+                    const disablePrev = donasiSlider.scrollLeft <= 0;
+                    const disableNext = donasiSlider.scrollLeft >= (maxScrollLeft - 1);
+                    toggleButtonState(donasiPrev, disablePrev || maxScrollLeft <= 0);
+                    toggleButtonState(donasiNext, disableNext || maxScrollLeft <= 0);
+                };
+
+                const scrollAmount = () => Math.max(donasiSlider.clientWidth * 0.9, 200);
+                const smoothScroll = (offset) => {
+                    donasiSlider.scrollBy({ left: offset, behavior: 'smooth' });
+                };
+
+                donasiPrev.addEventListener('click', () => smoothScroll(-scrollAmount()));
+                donasiNext.addEventListener('click', () => smoothScroll(scrollAmount()));
+
+                const onScroll = () => window.requestAnimationFrame(updateDonasiNavState);
+                donasiSlider.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('resize', updateDonasiNavState);
+                updateDonasiNavState();
+            }
         });
     </script>
 @endsection

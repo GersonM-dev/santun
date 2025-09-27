@@ -28,7 +28,6 @@ class HomeController extends Controller
             ->where('catatan', '!=', '')
             ->orderByDesc('date')
             ->orderByDesc('created_at')
-            ->take(3)
             ->get();
 
         return view('pages.home', compact('kegiatans', 'donasiCatatan'));
