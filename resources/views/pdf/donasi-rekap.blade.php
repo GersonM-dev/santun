@@ -170,15 +170,26 @@
                 } else {
                     $bagian = [];
                     if ($d->items && $d->items->count()) {
-                        $bagian[] = 'Barang: ' . $d->items->map(function($i){
+                        $bagian[] = 'Barang: ' . $d->items->map(function ($i) {
                             $sat = optional($i->satuan)->name;
-                            return $i->name.' ('.$i->qty.($sat ? ' '.$sat : '').')';
+                            return $i->name . ' (' . $i->qty . ($sat ? ' ' . $sat : '') . ')';
                         })->implode(', ');
                     }
-                    if ($d->jasa && $d->jasa->count()) {
-                        $bagian[] = 'Jasa: ' . $d->jasa->map(fn($j) => trim(strip_tags($j->description_jasa)))->implode(' | ');
+
+                    $jasaData = $d->jasa;
+                    if ($jasaData instanceof \Illuminate\Support\Collection) {
+                        $jasaList = $jasaData->map(fn($j) => trim(strip_tags($j->description_jasa)))->filter()->implode(' | ');
+                        if ($jasaList !== '') {
+                            $bagian[] = 'Jasa: ' . $jasaList;
+                        }
+                    } elseif ($jasaData) {
+                        $deskripsi = trim(strip_tags($jasaData->description_jasa ?? ''));
+                        if ($deskripsi !== '') {
+                            $bagian[] = 'Jasa: ' . $deskripsi;
+                        }
                     }
-                    $rincian = $bagian ? implode(' — ', $bagian) : '—';
+
+                    $rincian = $bagian ? implode(' - ', $bagian) : '-';
                 }
                 $kontak = $d->phone ?? '-';
             @endphp
